@@ -1,18 +1,32 @@
 <!DOCTYPE html>
-<html>
-    <head>
+<html lang="en">
+    
+<head>
         <title>TKhanna</title>
-        <link rel = "stylesheet" href = "stylesheet.css">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel = "stylesheet" href = "stylesheet.css">
     </head>
+
+
     <body>
+        
         <h1>ASTAR NSCC Script generator</h1>
+        
         <div id="introduction">Welcome! This site allows ASTAR NSCC users to 
             <b>
                 easily generate submission scripts
             </b> for their High Performance Computing jobs.
-         </div>
+        </div>
+        
         <br>
+        
         <div id="introduction">
+            <!-- List of types of jobs-->
             <b>What kind of scripts can you write?</b>
             <ol>
                 <li>Basic programming scripts</li>
@@ -20,8 +34,10 @@
                 <li>MPI/Gromacs</li>
             </ol>
          </div>
+         
          <table>
              <tr>
+                 <!-- headers for table-->
                 <th>normal</th>
                 <th>gpu</th>
             </tr>
@@ -30,35 +46,72 @@
                 <td>Specialised for AI jobs</td>
             </tr>
          </table>
+
          <br>
+         <!-- Entire input form-->
          <form>
-             <label for="uemail">User's Email</label>
-            <input type="email" id="uemail" name="uemail" placeholder="something@email.com">
-            <label for="queue">Which Queue?</label>
-            <select id = "queue">
-                <option value = "1">--</option>
-                <option value = "2">CPU</option>
-                <option value = "3">GPU</option>
-                <option value = "4">Visualisation</option>
-                <option value = "5">IME</option>
-              </select>
+                <label for="uemail">User's Email</label>
+                <input type="email" id="uemail" name="uemail" placeholder="something@email.com">
+            
+                <label for="queue">Which Queue?</label>
+                <select id = "queue">
+                    <option value = "1">--</option>
+                    <option value = "2">CPU</option>
+                    <option value = "3">GPU</option>
+                    <option value = "4">Visualisation</option>
+                    <option value = "5">IME</option>
+                    <option value = "6">LargeMem</option>
+                </select>
+
+                <label for="nodes">How many nodes</label>
+                <input type="number" id="nodes" name="nodes" placeholder="<=24">
+              
+                <br>
+                <br>
+              
+                <label for="hours">How many hours?</label>
+                <input type="number" id="hours" name="hours" placeholder="0">
+              
+                <label for="minutes">How many minutes?</label>
+                <input type="number" id="minutes" name="minutes" placeholder="0">
+              
+                <label for="seconds">How many seconds?</label>
+                <input type="number" id="seconds" name="seconds" placeholder="0">
+              
+                <br>
+                <br>
+              
+                <label for="nameP">What is the name of your job?</label>
+                <input type="text" id="nameP" name="nameP" placeholder="Name of project">
+              
+                <br>
+                <br>
+              
+                <div id="directory choice">Do you want to run the program (and receive the output) in the current working directory?</div>
+                <input type="radio" id="yes" name="directory" value="yes">
+                <label for="yes">Yes</label><br>
+                <input type="radio" id="no" name="directory" value="no">
+                <label for="no">No</label><br>
+              
+
               <br>
               <br>
-              <label for="hours">How many hours?</label>
-              <input type="number" id="hours" name="hours" placeholder="0">
-              <label for="minutes">How many minutes?</label>
-              <input type="number" id="minutes" name="minutes" placeholder="0">
-              <label for="seconds">How many seconds?</label>
-              <input type="number" id="seconds" name="seconds" placeholder="0">
-              <br>
-              <br>
-              <label for="nameP">What is the name of your job?</label>
-              <input type="text" id="nameP" name="nameP" placeholder="Name of project">
-              <br>
-              <br>
+
+              <div id="output choice">Do you want to join the output with the error messages?</div>
+              <input type="radio" id="yes" name="output" value="yes">
+              <label for="yes">Yes</label><br>
+              <input type="radio" id="no" name="output" value="no">
+              <label for="no">No</label><br>
+            
+
+            <br>
+            <br>
+
               <button>Submit!</button>
          </form>
          
-
+         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     </body>
 </html>
