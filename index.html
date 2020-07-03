@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TKhanna</title>
+        <link rel = "stylesheet" href = "stylesheet.css">
+    </head>
+    <body>
+        <h1>ASTAR NSCC Script generator</h1>
+        <div id="introduction">Welcome! This site allows ASTAR NSCC users to 
+            <b>
+                easily generate submission scripts
+            </b> for their High Performance Computing jobs.
+         </div>
+        <br>
+        <div id="introduction">
+            <b>What kind of scripts can you write?</b>
+            <ol>
+                <li>Basic programming scripts</li>
+                <li>Artificial Intelligence Jobs</li>
+                <li>MPI/Gromacs</li>
+            </ol>
+         </div>
+         <table>
+             <tr>
+                <th>normal</th>
+                <th>gpu</th>
+            </tr>
+            <tr>
+                <td>The basic queue, which allows you to do most jobs</td>
+                <td>Specialised for AI jobs</td>
+            </tr>
+         </table>
+         <br>
+         <form>
+             <label for="uemail">User's Email</label>
+            <input type="email" id="uemail" name="uemail" placeholder="something@email.com">
+            <label for="queue">Which Queue?</label>
+            <select id = "queue">
+                <option value = "1">--</option>
+                <option value = "2">CPU</option>
+                <option value = "3">GPU</option>
+                <option value = "4">Visualisation</option>
+                <option value = "5">IME</option>
+              </select>
+              <br>
+              <br>
+              <label for="hours">How many hours?</label>
+              <input type="number" id="hours" name="hours" placeholder="0">
+              <label for="minutes">How many minutes?</label>
+              <input type="number" id="minutes" name="minutes" placeholder="0">
+              <label for="seconds">How many seconds?</label>
+              <input type="number" id="seconds" name="seconds" placeholder="0">
+              <br>
+              <br>
+              <label for="nameP">What is the name of your job?</label>
+              <input type="text" id="nameP" name="nameP" placeholder="Name of project">
+              <br>
+              <br>
+              <button>Submit!</button>
+         </form>
+         
+
+    </body>
+</html>

@@ -1,0 +1,13 @@
+h1 {
+    color: blue;
+    text-align: center;
+}
+
+
+button {
+    color:blueviolet;
+    font:"times";
+}
+button:hover {
+    background-colour: orange;
+}
