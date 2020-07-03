@@ -3,6 +3,12 @@ h1 {
     text-align: center;
 }
 
+.navbar-custom {
+    background-color: grey;
+    color: white;
+}
+
+
 
 button {
     color:blueviolet;
@@ -10,4 +16,8 @@ button {
 }
 button:hover {
     background-colour: orange;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Abel', sans-serif !important;
 }
