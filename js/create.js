@@ -8,29 +8,22 @@ function validateInput() {
     var minutes = document.input.minutes.value;
     var seconds = document.input.seconds.value;
     var nameOfProject = document.input.nameP.value;
-    var yesDirectory = document.input.nodes.value;
-    var noDirectory = document.input.nodes.value;
-    var yesOutput = document.input.nodes.value;
-    var noOutput = document.input.nodes.value;
-    var emptyField = ""
-    var corrupt = false;
+    var directory = document.input.directory.value;
+    var output = document.input.output.value;
     if(email == "" || (!email.includes("@"))) {
-        corrupt = true;
-        emptyField = " email";
+        return false;
     } else if (queue == "") {
-        corrupt = true;
-        emptyField = " queue";
+        return false;
     } else if (isNaN(nodesNumber) || nodesNumber < 1 || nodesNumber > 24) {
-        corrupt = true;
-        emptyField = " number of nodes";
+        return false;
+    } else if (isNaN(hours) || isNaN(minutes) || isNaN(seconds)) {
+        return false;
+    } else if (nameOfProject == "") {
+        return false;
     } else {
         console.log("No errors");
-    }
-
-    if(corrupt) {
-        finalString = "You left the" + emptyField + " field empty";
-        return alert(finalString);
-    } else {
+        console.log(directory);
+        console.log(output);
         return [email,
                 queue,
                 nodesNumber,
@@ -38,22 +31,14 @@ function validateInput() {
                 minutes,
                 seconds,
                 nameOfProject,
-                yesDirectory,
-                noDirectory,
-                yesOutput,
-                noOutput];
+                directory,
+                output];
     }
 }
 
-function test() {
-    var variables = validateInput();
-    var finalString = writeScript(variables);
-    return alert(finalString);
-}
-
 function writeScript(inputArray) {
-    var bashDirective = "# !/bin/bash\n";
-    var pbsDirective = "PBS -";
+    var bashDirective = "# !/bin/bash\n\n";
+    var pbsDirective = "#PBS -";
     var newLine = "\n";
     var queue = pbsDirective.concat("q ",inputArray[1],newLine);
     var cores = pbsDirective.concat("l ",
@@ -64,13 +49,33 @@ function writeScript(inputArray) {
 
     var wallTime = pbsDirective.concat("l ",
         "walltime=",
-        inputArray[3],
+        inputArray[3].padStart(2,'0'),
         ":",
-        inputArray[4],
+        inputArray[4].padStart(2,'0'),
         ":",
-        inputArray[5],
+        inputArray[5].padStart(2,'0'),
         newLine);
     
     var nameOfProject = pbsDirective.concat("N ",inputArray[6],newLine);
-    return bashDirective.concat(queue,cores,wallTime,nameOfProject);
+    var output = "";
+    if(inputArray[8] == "yes") {
+        output=pbsDirective.concat("j ","oe",newLine);
+
+    }
+    var directory = "";
+    if(inputArray[7] == "yes") {
+        directory = "cd ${PBS_O_WORKDIR}\n"
+    }
+
+    return bashDirective.concat(queue,cores,wallTime,nameOfProject,output,directory);
 }
+
+function getScript() {
+    var variables = validateInput();
+    if(variables == false) {
+        return alert("Missing information!");
+    }
+    var finalString = writeScript(variables);
+    document.getElementById("outputScript").innerHTML= finalString;
+}
+

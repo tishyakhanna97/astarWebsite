@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+        <title>Home</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<!-- Responsive meta tag-->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Tishya Khanna">
+
+
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel = "stylesheet" href = "../css/stylesheet.css">
+    
+<!--Javascript-->
+<script type="text/javascript" src = "../js/delete.js"></script>
+</head>
+
+
+    <body>
+      <div class = "container-fluid">
+        <!-- Nav bar start-->
+        <h1>ASTAR NSCC Script generator</h1>
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+            <a class="navbar-brand" href="https://www.nscc.sg/">
+                <img src="../assets/astar.png" width="100" height="50" class="d-inline-block align-top" alt="" loading="lazy">                
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">
+                    <span class="sr-only">
+                      Home
+                    </span></a>
+                </li>
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Pages
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="./index.html">Home</a>
+                    <a class="dropdown-item" href="./create.html">Create</a>
+                    <a class="dropdown-item" href="./monitor.html">Monitor</a>
+                    <a class="dropdown-item" href="./delete.html">Delete</a>
+                  </div>
+                </li>
+                
+              </ul>
+            </div>
+          </nav>
+        <!-- Nav bar end-->
+        <!-- Form start-->
+        <form name = "input" onsubmit="return false">
+            <label for="uemail">User's Email</label>
+            <input type="email" id="uemail" name="uemail" placeholder="something@email.com">
+        
+            <label for="queue">Which Queue?</label>
+            <select id = "queue" name = "queue">
+                <option selected disabled value = "NIL">--Please select an option--</option>
+                <option value = "normal">CPU</option>
+                <option value = "gpu">GPU</option>
+                <option value = "iworkq">Visualisation</option>
+                <option value = "imeq">IME</option>
+                <option value = "largemem">LargeMem</option>
+            </select>
+
+            <label for="nodes">How many nodes</label>
+            <input type="number" id="nodes" name="nodes" placeholder="<=24">
+          
+            <br>
+            <br>
+          
+            <label for="hours">How many hours?</label>
+            <input type="number" id="hours" name="hours" placeholder="0">
+          
+            <label for="minutes">How many minutes?</label>
+            <input type="number" id="minutes" name="minutes" placeholder="0">
+          
+            <label for="seconds">How many seconds?</label>
+            <input type="number" id="seconds" name="seconds" placeholder="0">
+          
+            <br>
+            <br>
+          
+            <label for="nameP">What is the name of your job?</label>
+            <input type="text" id="nameP" name="nameP" placeholder="Name of project">
+          
+            <br>
+            <br>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col">
+            <div id="directory_choice">Do you want to run the program (and receive the output) in the current working directory?</div>
+            <input type="radio" id="yesDirectory" name="directory" value="yes">
+            <label for="yes">Yes</label><br>
+            <input type="radio" id="noDirectory" name="directory" value="no">
+            <label for="no">No</label><br>
+                </div>
+                <div class="col">
+
+                  <div id="output choice">Do you want to join the output with the error messages?</div>
+                  <input type="radio" id="yesOutput" name="output" value="yes">
+                  <label for="yes">Yes</label><br>
+                  <input type="radio" id="noOutput" name="output" value="no">
+                  <label for="no">No</label><br>                    </div>
+              </div>
+            </div>
+            
+          
+
+        
+
+        <br>
+        <br>
+
+          <input type="submit" onclick="getScript()"></input>
+          <input type="reset" value="Reset">
+
+        <br>
+        <br>
+     </form>
+     <div class="form-group">
+      <label for="exampleFormControlTextarea1">Your Script</label>
+      <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10" placeholder="Fill up the form first!"></textarea>
+    </div>         
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    </div>
+    </body>
+</html>
