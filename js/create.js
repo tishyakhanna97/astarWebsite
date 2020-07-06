@@ -71,6 +71,7 @@ function writeScript(inputArray) {
 }
 
 function getScript() {
+    document.getElementById("outputScript").innerHTML= "";
     var variables = validateInput();
     if(variables == false) {
         return alert("Missing information!");
