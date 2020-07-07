@@ -46,7 +46,7 @@
                     Pages
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="./index.html">Home</a>
+                    <a class="dropdown-item" href="../index.html">Home</a>
                     <a class="dropdown-item" href="./create.html">Create</a>
                   </div>
                 </li>
@@ -58,12 +58,9 @@
 
         <!-- Form start-->
         <form class= "mt-4" name = "input" onsubmit="return false">
-          <!--Email, queue and nodes start-->
+          <!--Queue, nodes, memory start-->
             <div class="row">
-              <div class="col">
-                <label for="uemail">What's your email?</label>
-                <input type="email" class = "form-control" id="uemail" name="uemail" placeholder="something@email.com">
-              </div>
+
               <div class="col">
                 <label for="queue">Which Queue do you want to submit your job to?</label>
                 <select id = "queue" class = "form-control" name = "queue">
@@ -75,12 +72,20 @@
                 <option value = "largemem">Large Memory</option>
             </select>
               </div>
+
+
               <div class="col">
                 <label for="nodes">How many nodes so you need?</label>
                 <input type="number" class = "form-control" id="nodes" name="nodes" placeholder="<=24">
               </div>
+
+              <div class="col">
+                <label for="memory">How much memory (in GB) do you need?</label>
+                <input type="number" class = "form-control" id="memory" name="memory" placeholder="0GB">
+              </div>
+
             </div>
-          <!--Email, queue and nodes end-->
+          <!--Queue,nodes and memory end-->
 
           <!--Time  start-->
 
@@ -100,57 +105,104 @@
             </div>
             <!--Time end-->
 
-          <!--Extra  start-->
+          <!--Name and Project  start-->
 
           <div class="row mt-4">
 
-            <div class="col">
+            <div class="col-4">
               <label for="nameP">What is the name of your job?</label>
               <input type="text" class="form-control" id="nameP" name="nameP" placeholder="Name of project">
             </div>
 
 
-            <div class="col" id="directory_choice">Do you want to run the program in the current working directory?
+            <div class="col" id="projectID">Do you have a special Project ID for your job?
             
               <div class="form-check">
-              <input class="form-check-input" type="radio" name="directory" id="yesDirectory" value="yes" checked>
-              <label class="form-check-label" for="yesDirectory">
+              <input class="form-check-input" onclick="yesNoCheck()" type="radio" name="project" id="yesProject">
+              <label class="form-check-label" for="yesProject">
                 Yes
               </label>
             </div>
             
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="directory" id="noDirectory" value="no">
-              <label class="form-check-label" for="noDirectory">
+              <input class="form-check-input" onclick="yesNoCheck()" type="radio" name="project" id="noProject" checked>
+              <label class="form-check-label" for="noProject">
                 No
               </label>
             </div>
+            <div class="form-check" id="pid" style="visibility:hidden">
+            <input class="form-check-input" type="text" name="projectID" id ="projectID" placeholder="project id">
+          </div>
           </div>
 
-
-            <div class="col" id="output_choice">Do you want to join the output with the error messages?
-
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="output" id="yesOutput" value="yes" checked>
-                <label class="form-check-label" for="yesOutput">
-                  Yes
-                </label>
-              </div>
-
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="output" id="noOutput" value="no">
-                <label class="form-check-label" for="yesOutput">
-                  No
-                </label>
-              </div>
-            </div>
+          <div class="col" id="outName">Do you have a special name for your output?
+            
+            <div class="form-check">
+            <input class="form-check-input" onclick="yesNoCheckOutput()" type="radio" name="outputName" id="yesOutputName">
+            <label class="form-check-label" for="yesOutputName">
+              Yes
+            </label>
           </div>
+          
+          <div class="form-check">
+            <input class="form-check-input" onclick="yesNoCheckOutput()" type="radio" name="outputName" id="noOutputName" checked>
+            <label class="form-check-label" for="noOutputName">
+              No
+            </label>
+          </div>
+          <div class="form-check" id="outputNameInput" style="visibility:hidden">
+          <input class="form-check-input" type="text" name="outputNameInput" id ="outputNameInput" placeholder="output name">
+        </div>
+        </div>
 
+          </div>
+          <!--Name and Project   end-->
 
-          <!--Extra  end-->
+                    <!--Extra  start-->
+
+                    <div class="row mt-5">
+
+                    
+                      <div class="col" id="directory_choice">Do you want to run the program in the current working directory?
+                      
+                        <div class="form-check">
+                        <input class="form-check-input" type="radio" name="directory" id="yesDirectory" value="yes">
+                        <label class="form-check-label" for="yesDirectory">
+                          Yes
+                        </label>
+                      </div>
+                      
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="directory" id="noDirectory" value="no">
+                        <label class="form-check-label" for="noDirectory">
+                          No
+                        </label>
+                      </div>
+                    </div>
+          
+          
+                      <div class="col" id="output_choice">Do you want to join the output with the error messages?
+          
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="output" id="yesOutput" value="yes">
+                          <label class="form-check-label" for="yesOutput">
+                            Yes
+                          </label>
+                        </div>
+          
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="output" id="noOutput" value="no">
+                          <label class="form-check-label" for="yesOutput">
+                            No
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <!--Extra  end-->
+
           <div class="text-center mt-4">
           <input class="text-center" type="submit" onclick="getScript()"></input>
-          <input class="mxauto" type="reset" value="Reset">
+          <input class="text-center" type="reset" value="Reset">
         </div>
 
         <br>
