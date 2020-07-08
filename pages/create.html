@@ -2,7 +2,7 @@
 <html lang="en">
     
 <head>
-        <title>Home</title>
+        <title>Create</title>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <!-- Responsive meta tag-->
@@ -118,14 +118,14 @@
             <div class="col" id="projectID">Do you have a special Project ID for your job?
             
               <div class="form-check">
-              <input class="form-check-input" onclick="yesNoCheck()" type="radio" name="project" id="yesProject">
+              <input class="form-check-input" onclick="yesNoCheck()" type="radio" name="project" id="yesProject" value="yes">
               <label class="form-check-label" for="yesProject">
                 Yes
               </label>
             </div>
             
             <div class="form-check">
-              <input class="form-check-input" onclick="yesNoCheck()" type="radio" name="project" id="noProject" checked>
+              <input class="form-check-input" onclick="yesNoCheck()" type="radio" name="project" id="noProject" checked value="no">
               <label class="form-check-label" for="noProject">
                 No
               </label>
@@ -138,19 +138,19 @@
           <div class="col" id="outName">Do you have a special name for your output?
             
             <div class="form-check">
-            <input class="form-check-input" onclick="yesNoCheckOutput()" type="radio" name="outputName" id="yesOutputName">
+            <input class="form-check-input" onclick="yesNoCheckOutput()" type="radio" name="outputName" id="yesOutputName" value="yes">
             <label class="form-check-label" for="yesOutputName">
               Yes
             </label>
           </div>
           
           <div class="form-check">
-            <input class="form-check-input" onclick="yesNoCheckOutput()" type="radio" name="outputName" id="noOutputName" checked>
+            <input class="form-check-input" onclick="yesNoCheckOutput()" type="radio" name="outputName" id="noOutputName" checked value="no">
             <label class="form-check-label" for="noOutputName">
               No
             </label>
           </div>
-          <div class="form-check" id="outputNameInput" style="visibility:hidden">
+          <div class="form-check" id="oNI" style="visibility:hidden">
           <input class="form-check-input" type="text" name="outputNameInput" id ="outputNameInput" placeholder="output name">
         </div>
         </div>
@@ -163,10 +163,10 @@
                     <div class="row mt-5">
 
                     
-                      <div class="col" id="directory_choice">Do you want to run the program in the current working directory?
+                      <div class="col-4" id="directory_choice">Do you want to run the program in the current working directory?
                       
                         <div class="form-check">
-                        <input class="form-check-input" type="radio" name="directory" id="yesDirectory" value="yes">
+                        <input class="form-check-input" type="radio" name="directory" id="yesDirectory" value="yes" checked>
                         <label class="form-check-label" for="yesDirectory">
                           Yes
                         </label>
@@ -181,10 +181,10 @@
                     </div>
           
           
-                      <div class="col" id="output_choice">Do you want to join the output with the error messages?
+                      <div class="col-4" id="output_choice">Do you want to join the output with the error messages?
           
                         <div class="form-check">
-                          <input class="form-check-input" type="radio" name="output" id="yesOutput" value="yes">
+                          <input class="form-check-input" type="radio" name="output" id="yesOutput" value="yes" checked>
                           <label class="form-check-label" for="yesOutput">
                             Yes
                           </label>
@@ -201,8 +201,10 @@
                     <!--Extra  end-->
 
           <div class="text-center mt-4">
-          <input class="text-center" type="submit" onclick="getScript()"></input>
+          <input class="text-center" type="submit" onclick="getScript()">
           <input class="text-center" type="reset" value="Reset">
+          <button type="button" class="btn btn-danger" onclick="testScript()">Test Input</button>        
+        </div>
         </div>
 
         <br>
@@ -210,10 +212,11 @@
                 <!--Form end-->            
 
      </form>
-     <div class="form-group">
+     <div class="form-group text-center">
       <label for="outputScript">Your Script</label>
       <textarea class="form-control rounded-0" id="outputScript" rows="10" placeholder="Fill up the form first!"></textarea>
-    </div>         
+    </div>  
+
      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>

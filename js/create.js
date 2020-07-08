@@ -3,38 +3,66 @@
 function validateInput() {
     var queue = document.input.queue.value;
     var nodesNumber = document.input.nodes.value;
+    var memory = document.input.memory.value;
     var hours = document.input.hours.value;
     var minutes = document.input.minutes.value;
     var seconds = document.input.seconds.value;
     var nameOfProject = document.input.nameP.value;
     var directory = document.input.directory.value;
     var output = document.input.output.value;
+    var pidCheck = document.input.project.value;
+    var outputNameCheck = document.input.outputName.value;
     if (queue == "") {
+        console.log("Missing Queue Information");
         return false;
     } else if (isNaN(nodesNumber) || nodesNumber < 1 || nodesNumber > 24) {
+        console.log("Missing number of nodes");
         return false;
     } else if (isNaN(hours) || isNaN(minutes) || isNaN(seconds)) {
+        console.log("Missing time input");
         return false;
     } else if (nameOfProject == "") {
+        console.log("Missing project name");
+        return false;
+    } else if (isNaN(memory) || memory <= 0) {
+        console.log("Memory issue");
         return false;
     } else {
         console.log("No errors");
-        console.log(directory);
-        console.log(output);
-        var variables = {queue:queue, numberOfNodes:nodesNumber, hours:hours, minutes:minutes, seconds:seconds,name:nameOfProject,directory:directory,output:output};
+        var pid = "Personal";
+        if(pidCheck == "yes") {
+            pid = document.input.projectID.value;
+        }
+        var outputName = "";
+        if(outputNameCheck == "yes") {
+            outputName = document.input.outputNameInput.value;
+        }
+        var variables = {queue:queue, 
+                         numberOfNodes:nodesNumber,
+                         memory:memory, 
+                         hours:hours, 
+                         minutes:minutes, 
+                         seconds:seconds,
+                         name:nameOfProject,
+                         directory:directory,
+                         output:output,
+                         outputName:outputName,
+                         pid:pid};
         return variables;
     }
 }
 
 function writeScript(input) {
-    var bashDirective = "# !/bin/bash\n\n";
+    var bashDirective = "# !/bin/bash\n";
     var pbsDirective = "#PBS -";
     var newLine = "\n";
     var queue = pbsDirective.concat("q ",input.queue,newLine);
     var cores = pbsDirective.concat("l ",
         "select=",
         input.numberOfNodes,
-        ":ncpus=24:mem=1G",
+        ":ncpus=24:mem=",
+        input.memory,
+        "G",
         newLine);
 
     var wallTime = pbsDirective.concat("l ",
@@ -57,7 +85,14 @@ function writeScript(input) {
         directory = "cd ${PBS_O_WORKDIR}\n"
     }
 
-    return bashDirective.concat(queue,cores,wallTime,nameOfProject,output,directory);
+    var outputName = "";
+    if(input.outputName != "") {
+        outputName = pbsDirective.concat("o ", input.outputName,newLine);
+    }
+
+    var projectID = pbsDirective.concat("P ", input.pid,newLine,newLine);
+
+    return bashDirective.concat(queue,cores,wallTime,nameOfProject,output,outputName,projectID,directory);
 }
 
 function getScript() {
@@ -83,4 +118,33 @@ function yesNoCheckOutput() {
     } else {
         document.getElementById('outputNameInput').style.visibility = 'hidden';
     }
+}
+
+function testScript() {
+    document.input.queue.value = "normal";
+    document.input.nodes.value = "1";
+    document.input.memory.value = "1";
+    document.input.hours.value = "0";
+    document.input.minutes.value = "10";
+    document.input.seconds.value = "0";
+    document.input.nameP.value = "Test";
+    document.input.directory.value = "yes";
+    document.input.output.value = "yes";
+    document.input.projectID.value = "";
+    document.input.outputNameInput.value = "output.txt";
+    var variables = {queue:"normal", 
+        numberOfNodes:"1",
+        memory:"1", 
+        hours:"0", 
+        minutes:"10", 
+        seconds:"0",
+        name:"Test",
+        directory:"yes",
+        output:"yes",
+        outputName:"output.txt",
+        pid:""};
+    var script = writeScript(variables);
+    document.getElementById("outputScript").innerHTML= script;
+
+
 }
