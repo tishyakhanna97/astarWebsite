@@ -15,7 +15,7 @@ function validateInput() {
     if (queue == "") {
         console.log("Missing Queue Information");
         return false;
-    } else if (isNaN(nodesNumber) || nodesNumber < 1 || nodesNumber > 24) {
+    } else if (isNaN(nodesNumber) || nodesNumber < 1 || nodesNumber > 2) {
         console.log("Missing number of nodes");
         return false;
     } else if (isNaN(hours) || isNaN(minutes) || isNaN(seconds)) {

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+        <title>Tutorials</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<!-- Responsive meta tag-->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Tishya Khanna">
+
+
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel = "stylesheet" href = "../css/stylesheet.css">
+
+<!--Javascript-->
+<script type="text/javascript" src = "../js/tutorials.js"></script>
+
+</head>
+
+    <body>
+      <div class = "container-fluid bg-light">
+        <!-- Nav bar start-->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+            <a class="navbar-brand" href="https://www.nscc.sg/">
+                <img src="../assets/astar.png" width="100" height="50" class="d-inline-block align-top" alt="" loading="lazy">                
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">
+                    <span class="sr-only">
+                      Home
+                    </span></a>
+                </li>
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Pages
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Home</a>
+                    <a class="dropdown-item" href="../pages/create.html">Create</a>
+                  </div>
+                </li>
+                
+              </ul>
+            </div>
+          </nav>
+        <!-- Nav bar end-->
+        
+        <!--Information start-->
+          <div class="jumbotron jumbotron-fluid p-2">
+            <div class="container">
+              <h1 class="display-8">Tutorials</h1>
+              <div class="text-center">
+                On this page, we shall guide you through the submission scripts we used in the ASPIRE 1 amd AI start up guides.
+              </div>
+            </div>
+          </div>
+        <!-- Information end-->
+        
+        
+        
+        <!--Buttons start-->
+        <div class="row">
+
+        <div id="ai_holder" class="col">
+          <div class="text-center">
+            <button class="btn-danger btn-lg btn-block" onclick="toggleAI()">AI</button>
+          </div>
+        </div>
+        <div id="mpi_holder" class="col">
+          <div class="text-center">
+            <button class="btn-danger btn-lg btn-block" onclick="toggleMPI()">MPI</button>
+          </div>
+        </div>
+        </div>
+
+          <!--AI button end-->
+
+          <!-- Tabs AI start-->
+            <div  id="ai" class="panel panel-default">
+              <h1 class="mt-4" style="color:black">AI</h1>
+
+
+              <ul class="nav nav-tabs mt-4">
+                <li class="nav-item">
+                    <a href="#cpu" class="nav-link active" data-toggle="tab">CPU</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#gpu" class="nav-link" data-toggle="tab">GPU</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#dgx" class="nav-link" data-toggle="tab">DGX</a>
+                </li>
+            </ul>
+
+            <!--tabs AI end-->
+
+            <!--CPU entire start-->
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="cpu">
+                    <h2 class="mt-2 text-center font-weight-bold">CPU</h2>
+                    
+                    <p class="text-justify">
+                      In the AI kick start guide, we provided an example for running a Deep Learning job 
+                      on the compute nodes(CPU) of the NSCC ASPIRE 1 system. Below, we have provided the completed submission script.
+                    </p>
+
+                    <p>
+                      Note that the <code>&lt;#PBS &gt;</code> directive is simply a way of telling the interpreter that the line is to be interpreted as a command for the 
+                      PBS system (which the supercomputers in NSCC use to schedule jobs and allocate resources) instead of a comment. In the script generation algorithm, we will automatically add it
+                      for you, so you do not have to worry about it. 
+                    </p>
+                    <!--Whole CPU script start-->
+                <div class="form-group">
+                  <div class="text-center">
+                    <label class="font-weight-bold" id="cpuAIScriptLabel" for="cpuAIScript">CPU Script for AI jobs</label>
+
+                  </div>
+                 <textarea class="form-control my-code" id="cpuAIScript" rows="12">
+#!/bin/bash
+# Exercise 1 submission script - submit.sh
+# Below, is the queue
+#PBS -q normal
+#PBS -j oe
+#PBS -l select=1:ncpus=24:mem=1G
+#PBS -l walltime=00:10:00
+#PBS -P Personal
+#PBS -N linear_program
+
+# Commands start here
+cd ${PBS_O_WORKDIR}
+module load singularity
+singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.py</textarea>
+                </div>
+
+                <p class="text-justify">
+                  In this section, we shall be going through each line of the script and relating it back to how you can use this website to generate a similar script easily.
+                </p>
+                <!--Whole CPU script end-->
+
+                <!--Bash directive start-->
+
+                <div class="form-group">
+                  <div class="text-center">
+                    <label class="font-weight-bold" for="cpuAIBash">Bash directive</label>
+                  </div>
+                 <textarea class="form-control my-code" id="cpuAIBash" rows="2">
+  #!/bin/bash
+  # Exercise 1 submission script - submit.sh</textarea>
+                </div>
+                <p class="text-justify">
+                  The first line, <code>&lt;#!/bin/bash&gt;</code> is a directive telling the environment to use bash as a command interpreter. 
+                  We will automatically include in the scripts generated on this website, so you do not have to worry about it. The second line,
+                  <code>&lt;# Exercise 1 submission script - submit.sh&gt;</code> is simply a comment, and can be added by you once the script is generated.
+                </p>
+
+                <!--Bash directive end-->
+
+
+                <!--Queue directive start-->
+
+                <div class="form-group">
+                  <div class="text-center">
+                    <label class="font-weight-bold" for="cpuAIQueue">Queue directive</label>
+                  </div>
+                 <textarea class="form-control my-code" id="cpuAIQueue" rows="2">
+# Below, is the queue
+#PBS -q normal</textarea>
+                </div>
+                <p class="text-justify">
+                  The first line, <code>&lt;# Below, is the queue&gt;</code> is a just a comment again and can be added by you. In the second line,<code>&lt;#PBS -q normal&gt;</code> 
+                  we have the queue directive <code>&lt;-q&gt;</code>. <code>&lt;normal&gt;</code> refers to the actual queue, the CPU (compute nodes). When using the website, you can specify
+                  the queue using the dropdown box below.
+                </p>
+
+                <label for="queue">Which Queue do you want to submit your job to?</label>
+                <select id = "queue" class = "form-control" name = "queue">
+                <option disabled value = "NIL">--Please select an option--</option>
+                <option selected value = "normal">CPU</option>
+                <option value = "gpu">GPU</option>
+                <option value = "iworkq">Visualisation</option>
+                <option value = "imeq">IME</option>
+                <option value = "largemem">Large Memory</option>
+            </select>
+
+            <p class="text-justify">
+              To find out more about the jobs, you can refer to the <a href="../index.html">main page</a> or the <a href="https://help.nscc.sg/pbspro-quickstartguide/#_Toc458432782">NSCC User guides</a>.
+            </p>
+
+                <!--Queue directive end-->
+
+                <!--Output directive start-->
+
+                <div class="form-group">
+                  <div class="text-center">
+                    <label class="font-weight-bold" for="cpuAIQueue">Output and Error directive</label>
+                  </div>
+                 <textarea class="form-control my-code" id="cpuAIQueue" rows="1">
+#PBS -j oe</textarea>
+                </div>
+                <p class="text-justify">
+                  In this line,<code>&lt;#PBS -j oe&gt;</code> 
+                  we have the output and error directive <code>&lt;-j&gt;</code>. <code>&lt;oe&gt;</code> allows you to join the output and error files together. If you
+                  would like to keep them separate, you can exclude this. When using the website, you can specify this using the checkbox below.
+                </p>
+
+                <div class="col-4" id="output_choice">Do you want to join the output with the error messages?
+          
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="output" id="yesOutput" value="yes" checked>
+                    <label class="form-check-label" for="yesOutput">
+                      Yes
+                    </label>
+                  </div>
+    
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="output" id="noOutput" value="no">
+                    <label class="form-check-label" for="yesOutput">
+                      No
+                    </label>
+                  </div>
+                </div>
+
+                <!--Output directive end-->
+
+                <!--Cores and memory directive start-->
+
+                <div class="form-group">
+                  <div class="text-center">
+                    <label class="font-weight-bold" for="cpuAICores">Cores and Memory directive</label>
+                  </div>
+                 <textarea class="form-control my-code" id="cpuAICores" rows="1">
+#PBS -l select=1:ncpus=24:mem=1G</textarea>
+                </div>
+                <p class="text-justify">
+                  In this line,<code>&lt;#PBS -l select=1:ncpus=24:mem=1G&gt;</code> 
+                  we have the directive (called limit) for the number of cores and memory <code>&lt;-l&gt;</code>. Note that the same directive is used for walltime as well. 
+                 This allows you to control the number of units of CPUs and also the number of CPUs. 
+                 In this case, we have selected 1 unit <code>&lt;select=1:&gt;</code> of 24 CPUs <code>&lt;ncpus=24:&gt;</code>.
+                 Finally, we can also specify the amount of memory (in GB) that we need for our task. Here, we have 1GB of memory <code>&lt;mem=1G&gt;</code> 
+                When using the website, you can specify the number of units of CPUs, number of CPUs per unit and the memory needed with the number fields below.
+
+                <div class="col">
+                  <label for="nodes">How many units of processors do you need?</label>
+                  <input type="number" class = "form-control" id="nodes" name="nodes" placeholder="<=24">
+                </div>
+  
+                <div class="col">
+                  <label for="memory">How much memory (in GB) do you need?</label>
+                  <input type="number" class = "form-control" id="memory" name="memory" placeholder="0GB">
+                </div>
+                </p>
+
+                <!--Cores and memory directive end-->
+
+
+
+
+
+
+
+
+                
+                  </div>
+                  <div class="tab-pane fade" id="gpu">
+                    <p>GPU</p>
+                </div>
+                <div class="tab-pane fade" id="dgx">
+                    <p>DGX</p>
+                </div>
+            </div>  
+            </div>
+
+              <!--CPU entire end-->
+
+
+            
+            <!-- AI end-->
+
+            <!--MPI Start-->
+
+            <div style="display:none" id="mpi" class="panel panel-default">
+              <h1 class="mt-4" style="color:black">MPI</h1>
+
+
+            </div>
+            <!--MPI End-->
+
+
+
+
+
+
+
+        <!--Buttons to choose AI or MPI end-->
+
+
+        
+
+
+      <!--Container close-->
+      </div>
+
+        
+         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    
+        </div>
+        </body>
+</html>

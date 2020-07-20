@@ -20,6 +20,8 @@
 <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
     
 <!--Javascript-->
+<script type="text/javascript" src = "./js/main.js"></script>
+
 </head>
 
     <body>
@@ -48,7 +50,7 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Home</a>
-                    <a class="dropdown-item" href="./pages/create.html">Create</a>
+                    <a class="dropdown-item" href="./pages/diy.html">Create</a>
                   </div>
                 </li>
                 
@@ -74,7 +76,7 @@
               <div class="col-2"> 
               </div>
               <div class="col-2">
-                <button type="button" class="btn-danger btn-lg btn-block">Tutorials</button>
+                <button type="button" onclick="goToTutorials()" class="btn-danger btn-lg btn-block">Tutorials</button>
               </div>
               <div class="col">
                 You can use the tutorials to better understand the scripting system that NSCC uses, PBS.
@@ -88,7 +90,7 @@
                 What would you like to do today?
               </div>
               <div class="col-2">
-                <button type="button" class="btn-warning btn-lg btn-block">Templates</button>
+                <button type="button" onclick="goToTemplates()" class="btn-warning btn-lg btn-block">Templates</button>
               </div>
               <div class="col">
                 You can use the templates if you would like to quickly generate a script based on recommended parameters.
@@ -101,7 +103,7 @@
               <div class="col-2"> 
               </div>
               <div class="col-2">
-                <button type="button" class="btn-success btn-lg btn-block">DIY</button>
+                <button type="button" onclick="goToDiy()" class="btn-success btn-lg btn-block">DIY</button>
               </div>
               <div class="col">
                 You can use the DIY if you would like to tailormake your submission script.
