@@ -45,8 +45,8 @@
                     Pages
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Home</a>
-                    <a class="dropdown-item" href="../pages/create.html">Create</a>
+                    <a class="dropdown-item" href="../index.html">Home</a>
+                    <a class="dropdown-item" href="./diy.html">DIY</a>
                   </div>
                 </li>
                 
@@ -115,14 +115,14 @@
                     </p>
 
                     <p>
-                      Note that the <code>&lt;#PBS &gt;</code> directive is simply a way of telling the interpreter that the line is to be interpreted as a command for the 
+                      Note that the <code>#PBS </code> directive is simply a way of telling the interpreter that the line is to be interpreted as a command for the 
                       PBS system (which the supercomputers in NSCC use to schedule jobs and allocate resources) instead of a comment. In the script generation algorithm, we will automatically add it
                       for you, so you do not have to worry about it. 
                     </p>
                     <!--Whole CPU script start-->
                 <div class="form-group">
                   <div class="text-center">
-                    <label class="font-weight-bold" id="cpuAIScriptLabel" for="cpuAIScript">CPU Script for AI jobs</label>
+                    <label class="font-weight-bold code-boxes-title" id="cpuAIScriptLabel" for="cpuAIScript">CPU Script for AI jobs</label>
 
                   </div>
                  <textarea class="form-control my-code" id="cpuAIScript" rows="12">
@@ -151,16 +151,16 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
 
                 <div class="form-group">
                   <div class="text-center">
-                    <label class="font-weight-bold" for="cpuAIBash">Bash directive</label>
+                    <label class="font-weight-bold code-boxes-title" for="cpuAIBash">Bash directive</label>
                   </div>
                  <textarea class="form-control my-code" id="cpuAIBash" rows="2">
   #!/bin/bash
   # Exercise 1 submission script - submit.sh</textarea>
                 </div>
                 <p class="text-justify">
-                  The first line, <code>&lt;#!/bin/bash&gt;</code> is a directive telling the environment to use bash as a command interpreter. 
+                  The first line, <code>#!/bin/bash</code> is a directive telling the environment to use bash as a command interpreter. 
                   We will automatically include in the scripts generated on this website, so you do not have to worry about it. The second line,
-                  <code>&lt;# Exercise 1 submission script - submit.sh&gt;</code> is simply a comment, and can be added by you once the script is generated.
+                  <code># Exercise 1 submission script - submit.sh</code> is simply a comment, and can be added by you once the script is generated.
                 </p>
 
                 <!--Bash directive end-->
@@ -170,15 +170,15 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
 
                 <div class="form-group">
                   <div class="text-center">
-                    <label class="font-weight-bold" for="cpuAIQueue">Queue directive</label>
+                    <label class="font-weight-bold code-boxes-title" for="cpuAIQueue">Queue directive</label>
                   </div>
                  <textarea class="form-control my-code" id="cpuAIQueue" rows="2">
 # Below, is the queue
 #PBS -q normal</textarea>
                 </div>
                 <p class="text-justify">
-                  The first line, <code>&lt;# Below, is the queue&gt;</code> is a just a comment again and can be added by you. In the second line,<code>&lt;#PBS -q normal&gt;</code> 
-                  we have the queue directive <code>&lt;-q&gt;</code>. <code>&lt;normal&gt;</code> refers to the actual queue, the CPU (compute nodes). When using the website, you can specify
+                  The first line, <code># Below, is the queue</code> is a just a comment again and can be added by you. In the second line,<code>#PBS -q normal</code> 
+                  we have the queue directive <code>-q</code>. <code>normal</code> refers to the actual queue, the CPU (compute nodes). When using the website, you can specify
                   the queue using the dropdown box below.
                 </p>
 
@@ -202,14 +202,14 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
 
                 <div class="form-group">
                   <div class="text-center">
-                    <label class="font-weight-bold" for="cpuAIQueue">Output and Error directive</label>
+                    <label class="font-weight-bold code-boxes-title" for="cpuAIQueue">Output and Error directive</label>
                   </div>
                  <textarea class="form-control my-code" id="cpuAIQueue" rows="1">
 #PBS -j oe</textarea>
                 </div>
                 <p class="text-justify">
-                  In this line,<code>&lt;#PBS -j oe&gt;</code> 
-                  we have the output and error directive <code>&lt;-j&gt;</code>. <code>&lt;oe&gt;</code> allows you to join the output and error files together. If you
+                  In this line,<code>#PBS -j oe</code> 
+                  we have the output and error directive <code>-j</code>. <code>oe</code> allows you to join the output and error files together. If you
                   would like to keep them separate, you can exclude this. When using the website, you can specify this using the checkbox below.
                 </p>
 
@@ -236,32 +236,97 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
 
                 <div class="form-group">
                   <div class="text-center">
-                    <label class="font-weight-bold" for="cpuAICores">Cores and Memory directive</label>
+                    <label class="font-weight-bold code-boxes-title" for="cpuAICores">Cores and Memory directive</label>
                   </div>
                  <textarea class="form-control my-code" id="cpuAICores" rows="1">
 #PBS -l select=1:ncpus=24:mem=1G</textarea>
                 </div>
                 <p class="text-justify">
-                  In this line,<code>&lt;#PBS -l select=1:ncpus=24:mem=1G&gt;</code> 
-                  we have the directive (called limit) for the number of cores and memory <code>&lt;-l&gt;</code>. Note that the same directive is used for walltime as well. 
+                  In this line,<code>#PBS -l select=1:ncpus=24:mem=1G</code> 
+                  we have the directive (called limit) for the number of cores and memory <code>-l</code>. Note that the same directive is used for walltime as well. 
                  This allows you to control the number of units of CPUs and also the number of CPUs. 
-                 In this case, we have selected 1 unit <code>&lt;select=1:&gt;</code> of 24 CPUs <code>&lt;ncpus=24:&gt;</code>.
-                 Finally, we can also specify the amount of memory (in GB) that we need for our task. Here, we have 1GB of memory <code>&lt;mem=1G&gt;</code> 
+                 In this case, we have selected 1 unit <code>select=1:</code> of 24 CPUs <code>ncpus=24:</code>.
+                 Finally, we can also specify the amount of memory (in GB) that we need for our task. Here, we have 1GB of memory <code>mem=1G</code> 
                 When using the website, you can specify the number of units of CPUs, number of CPUs per unit and the memory needed with the number fields below.
+              </p>
 
                 <div class="col">
                   <label for="nodes">How many units of processors do you need?</label>
-                  <input type="number" class = "form-control" id="nodes" name="nodes" placeholder="<=24">
+                  <input type="number" class = "form-control" id="nodes" name="nodes">
                 </div>
   
                 <div class="col">
                   <label for="memory">How much memory (in GB) do you need?</label>
                   <input type="number" class = "form-control" id="memory" name="memory" placeholder="0GB">
                 </div>
-                </p>
 
                 <!--Cores and memory directive end-->
 
+                <!--Walltime start-->
+
+                <div class="form-group">
+                  <div class="text-center">
+                    <label class="font-weight-bold code-boxes-title" for="cpuAITime">Walltime directive</label>
+                  </div>
+                 <textarea class="form-control my-code" id="cpuAICores" rows="1">#PBS -l walltime=00:10:00</textarea>
+                </div>
+                <p class="text-justify">
+                  In this line,<code>#PBS -l walltime=00:10:00</code> 
+                  we have the directive (called limit) for the total time that we would like to allocate for this task <code>-l</code>. Note that the same directive is used for the number of cores and memory as well. 
+                 By setting a smaller required time, your task can be fast tracked to queues which are meant for short tasks. 
+                 In this case, we have selected 0 hours, 10 minutes and 0 seconds unit <code>walltime=00:10:00</code>.
+                When using the website, you can specify the hours, minutes and seconds with the mumber fields below.
+              </p>
+
+              <div class="row mt-4">
+                <div class="col">
+                  <label for="hours">How many hours?</label>
+                  <input type="number" class = "form-control" id="hours" name="hours" placeholder="0"> 
+                </div>
+                <div class="col">
+                  <label for="minutes">How many minutes?</label>
+                  <input type="number" class="form-control" id="minutes" name="minutes" placeholder="0">
+                </div>
+                <div class="col">
+                  <label for="seconds">How many seconds?</label>
+                  <input type="number"  class="form-control" id="seconds" name="seconds" placeholder="0">
+                </div>
+              </div>
+
+                <!--Walltime end-->
+
+                <!--Project start-->
+
+                <div class="form-group">
+                  <div class="text-center">
+                    <label class="font-weight-bold code-boxes-title" for="cpuAITime">Project directive</label>
+                  </div>
+                 <textarea class="form-control my-code" id="cpuAICores" rows="1">#PBS -P Personal</textarea>
+                </div>
+                <p class="text-justify">
+                  In this line,<code>#PBS -P Personal</code> 
+                  we have the directive (called project) for the project which we would like to  <code>-l</code>. Note that the same directive is used for the number of cores and memory as well. 
+                 By setting a smaller required time, your task can be fast tracked to queues which are meant for short tasks. 
+                 In this case, we have selected 0 hours, 10 minutes and 0 seconds unit <code>walltime=00:10:00</code>.
+                When using the website, you can specify the hours, minutes and seconds with the mumber fields below.
+              </p>
+
+              <div class="row mt-4">
+                <div class="col">
+                  <label for="hours">How many hours?</label>
+                  <input type="number" class = "form-control" id="hours" name="hours" placeholder="0"> 
+                </div>
+                <div class="col">
+                  <label for="minutes">How many minutes?</label>
+                  <input type="number" class="form-control" id="minutes" name="minutes" placeholder="0">
+                </div>
+                <div class="col">
+                  <label for="seconds">How many seconds?</label>
+                  <input type="number"  class="form-control" id="seconds" name="seconds" placeholder="0">
+                </div>
+              </div>
+
+                <!--Project end-->
 
 
 

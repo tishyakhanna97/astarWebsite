@@ -25,3 +25,8 @@ h1, h2, h3, h4, h5, h6 {
 .my-code {
     font-family: 'Courier New', Courier, monospace;
 }
+
+.code-boxes-title {
+    font-size: large;
+    font-weight: 200;
+}
