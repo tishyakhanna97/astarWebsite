@@ -73,12 +73,12 @@
 
         <div id="ai_holder" class="col">
           <div class="text-center">
-            <button class="btn-danger btn-lg btn-block" onclick="toggleAI()">AI</button>
+            <button id="aiButton" class="btn-success btn-lg btn-block" onclick="toggleAI()">AI</button>
           </div>
         </div>
         <div id="mpi_holder" class="col">
           <div class="text-center">
-            <button class="btn-danger btn-lg btn-block" onclick="toggleMPI()">MPI</button>
+            <button id="mpiButton" class="btn-danger btn-lg btn-block" onclick="toggleMPI()">MPI</button>
           </div>
         </div>
         </div>
@@ -87,8 +87,6 @@
 
           <!-- Tabs AI start-->
             <div  id="ai" class="panel panel-default">
-              <h1 class="mt-4" style="color:black">AI</h1>
-
 
               <ul class="nav nav-tabs mt-4">
                 <li class="nav-item">
@@ -119,6 +117,9 @@
                       PBS system (which the supercomputers in NSCC use to schedule jobs and allocate resources) instead of a comment. In the script generation algorithm, we will automatically add it
                       for you, so you do not have to worry about it. 
                     </p>
+
+                    <br>
+
                     <!--Whole CPU script start-->
                 <div class="form-group">
                   <div class="text-center">
@@ -146,6 +147,8 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
                   In this section, we shall be going through each line of the script and relating it back to how you can use this website to generate a similar script easily.
                 </p>
                 <!--Whole CPU script end-->
+                
+                <br>
 
                 <!--Bash directive start-->
 
@@ -164,6 +167,8 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
                 </p>
 
                 <!--Bash directive end-->
+
+                <br>
 
 
                 <!--Queue directive start-->
@@ -198,6 +203,9 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
 
                 <!--Queue directive end-->
 
+                <br>
+
+
                 <!--Output directive start-->
 
                 <div class="form-group">
@@ -231,6 +239,9 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
                 </div>
 
                 <!--Output directive end-->
+                
+                <br>
+
 
                 <!--Cores and memory directive start-->
 
@@ -261,6 +272,10 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
                 </div>
 
                 <!--Cores and memory directive end-->
+
+
+                <br>
+
 
                 <!--Walltime start-->
 
@@ -295,6 +310,10 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
 
                 <!--Walltime end-->
 
+
+                <br>
+
+
                 <!--Project start-->
 
                 <div class="form-group">
@@ -305,56 +324,780 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
                 </div>
                 <p class="text-justify">
                   In this line,<code>#PBS -P Personal</code> 
-                  we have the directive (called project) for the project which we would like to  <code>-l</code>. Note that the same directive is used for the number of cores and memory as well. 
-                 By setting a smaller required time, your task can be fast tracked to queues which are meant for short tasks. 
-                 In this case, we have selected 0 hours, 10 minutes and 0 seconds unit <code>walltime=00:10:00</code>.
-                When using the website, you can specify the hours, minutes and seconds with the mumber fields below.
+                  we have the directive (called project) for the project which we would like to submit our job under <code>-P</code>. If you have a special project ID (assigned by NSCC), then you
+                  can enter it in the text box below after selecting Yes. Else, we will autofill Personal, and the resources will be charged to your personal account.
               </p>
 
-              <div class="row mt-4">
-                <div class="col">
-                  <label for="hours">How many hours?</label>
-                  <input type="number" class = "form-control" id="hours" name="hours" placeholder="0"> 
-                </div>
-                <div class="col">
-                  <label for="minutes">How many minutes?</label>
-                  <input type="number" class="form-control" id="minutes" name="minutes" placeholder="0">
-                </div>
-                <div class="col">
-                  <label for="seconds">How many seconds?</label>
-                  <input type="number"  class="form-control" id="seconds" name="seconds" placeholder="0">
-                </div>
+              <div class="col" id="projectID">Do you have a special Project ID for your job?
+            
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="project" id="yesProject" value="yes">
+                <label class="form-check-label" for="yesProject">
+                  Yes
+                </label>
               </div>
+              
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="project" id="noProject" checked value="no">
+                <label class="form-check-label" for="noProject">
+                  No
+                </label>
+              </div>
+              <div class="form-check" id="pid" >
+              <input class="form-check-input" type="text" name="projectID" id ="projectID" placeholder="project id">
+            </div>
+            </div>
 
                 <!--Project end-->
 
 
+                <br>
 
 
-
-
-
-                
+                <!--Name start-->
+                <div class="form-group">
+                  <div class="text-center">
+                    <label class="font-weight-bold code-boxes-title" for="cpuAITime">Name directive</label>
                   </div>
-                  <div class="tab-pane fade" id="gpu">
-                    <p>GPU</p>
+                 <textarea class="form-control my-code" id="cpuAICores" rows="1">#PBS -N linear_program</textarea>
                 </div>
-                <div class="tab-pane fade" id="dgx">
-                    <p>DGX</p>
-                </div>
-            </div>  
+                <p class="text-justify">
+                  In this line,<code>#PBS -N linear_program</code> 
+                  we have the directive (called name) for the name of our job <code>-N</code>. This name is up to you to choose. Note that your output and error files will be named after this as well.
+                  In this website, you can fill in your desired name with the help of the text box below.
+              </p>
+
+              <div class="col" id="outName">Do you have a special name for your output?
+            
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="outputName" id="yesOutputName" value="yes">
+                <label class="form-check-label" for="yesOutputName">
+                  Yes
+                </label>
+              </div>
+              
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="outputName" id="noOutputName" checked value="no">
+                <label class="form-check-label" for="noOutputName">
+                  No
+                </label>
+              </div>
+              <div class="form-check" id="oNI">
+              <input class="form-check-input" type="text" name="outputNameInput" id ="outputNameInput" placeholder="output name">
             </div>
+            </div>
+            <br>
+            <br>
+            <br>
+          </div>
+
+                <!--Name end-->
+
+
+
+
 
               <!--CPU entire end-->
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!--GPU entire start-->
+
+                  <div class="tab-pane fade" id="gpu">
+                  <h2 class="mt-2 text-center font-weight-bold">GPU</h2>
+                  
+                  <p class="text-justify">
+                    In the AI kick start guide, we provided an example for running a Deep Learning job 
+                    on the Graphics Processing Unit (GPU) of the NSCC ASPIRE 1 system. Below, we have provided the completed submission script.
+                  </p>
+
+                  <p>
+                    Note that the <code>#PBS </code> directive is simply a way of telling the interpreter that the line is to be interpreted as a command for the 
+                    PBS system (which the supercomputers in NSCC use to schedule jobs and allocate resources) instead of a comment. In the script generation algorithm, we will automatically add it
+                    for you, so you do not have to worry about it. 
+                  </p>
+
+                  <br>
+
+                  <!--Whole GPU script start-->
+              <div class="form-group">
+                <div class="text-center">
+                  <label class="font-weight-bold code-boxes-title" id="gpuAIScriptLabel" for="gpuAIScript">GPU Script for AI jobs</label>
+                </div>
+               <textarea class="form-control my-code" id="gpuAIScript" rows="12">
+#!/bin/bash
+# Exercise 2 submission script – submit.sh
+# Below, is the queue
+#PBS -q gpu
+#PBS -j oe
+#PBS -l select=1:ncpus=24:mem=1G
+#PBS -l walltime=00:10:00
+#PBS -P Personal
+#PBS -N fashion_program
+
+# Commands start here
+module load tensorflow/1.4
+cd ${PBS_O_WORKDIR}
+python fashion.py</textarea>
+              </div>
+
+              <p class="text-justify">
+                In this section, we shall be going through each line of the script and relating it back to how you can use this website to generate a similar script easily.
+              </p>
+              <!--Whole GPU script end-->
+              
+              <br>
             
-            <!-- AI end-->
+              <!--Bash directive start-->
+            
+              <div class="form-group">
+                <div class="text-center">
+                  <label class="font-weight-bold code-boxes-title" for="gpuAIBash">Bash directive</label>
+                </div>
+               <textarea class="form-control my-code" id="gpuAIBash" rows="2">#!/bin/bash
+            # Exercise 2 submission script – submit.sh</textarea>
+              </div>
+              <p class="text-justify">
+                The first line, <code>#!/bin/bash</code> is a directive telling the environment to use bash as a command interpreter. 
+                We will automatically include in the scripts generated on this website, so you do not have to worry about it. The second line,
+                <code># Exercise 2 submission script - submit.sh</code> is simply a comment, and can be added by you once the script is generated.
+              </p>
+            
+              <!--Bash directive end-->
+            
+              <br>
+            
+            
+              <!--Queue directive start-->
+            
+              <div class="form-group">
+                <div class="text-center">
+                  <label class="font-weight-bold code-boxes-title" for="gpuAIQueue">Queue directive</label>
+                </div>
+               <textarea class="form-control my-code" id="gpuAIQueue" rows="2">
+            # Below, is the queue
+            #PBS -q gpu</textarea>
+              </div>
+              <p class="text-justify">
+                The first line, <code># Below, is the queue</code> is a just a comment again and can be added by you. In the second line,<code>#PBS -q gpu</code> 
+                we have the queue directive <code>-q</code>. <code>gpu</code> refers to the actual queue, the GPU (Graphics Processing Unit). When using the website, you can specify
+                the queue using the dropdown box below.
+              </p>
+            
+              <label for="queue">Which Queue do you want to submit your job to?</label>
+              <select id = "queue" class = "form-control" name = "queue">
+              <option disabled value = "NIL">--Please select an option--</option>
+              <option value = "normal">CPU</option>
+              <option selected value = "gpu">GPU</option>
+              <option value = "iworkq">Visualisation</option>
+              <option value = "imeq">IME</option>
+              <option value = "largemem">Large Memory</option>
+            </select>
+            
+            <p class="text-justify">
+            To find out more about the jobs, you can refer to the <a href="../index.html">main page</a> or the <a href="https://help.nscc.sg/pbspro-quickstartguide/#_Toc458432782">NSCC User guides</a>.
+            </p>
+            
+              <!--Queue directive end-->
+            
+              <br>
+            
+            
+              <!--Output directive start-->
+            
+              <div class="form-group">
+                <div class="text-center">
+                  <label class="font-weight-bold code-boxes-title" for="gpuAIQueue">Output and Error directive</label>
+                </div>
+               <textarea class="form-control my-code" id="gpuAIQueue" rows="1">
+            #PBS -j oe</textarea>
+              </div>
+              <p class="text-justify">
+                In this line,<code>#PBS -j oe</code> 
+                we have the output and error directive <code>-j</code>. <code>oe</code> allows you to join the output and error files together. If you
+                would like to keep them separate, you can exclude this. When using the website, you can specify this using the checkbox below.
+              </p>
+            
+              <div class="col-4" id="output_choice">Do you want to join the output with the error messages?
+            
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="output" id="yesOutput" value="yes" checked>
+                  <label class="form-check-label" for="yesOutput">
+                    Yes
+                  </label>
+                </div>
+            
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="output" id="noOutput" value="no">
+                  <label class="form-check-label" for="yesOutput">
+                    No
+                  </label>
+                </div>
+              </div>
+            
+              <!--Output directive end-->
+              
+              <br>
+            
+            
+              <!--Cores and memory directive start-->
+            
+              <div class="form-group">
+                <div class="text-center">
+                  <label class="font-weight-bold code-boxes-title" for="gpuAICores">Cores and Memory directive</label>
+                </div>
+               <textarea class="form-control my-code" id="gpuAICores" rows="1">
+            #PBS -l select=1:ncpus=24:mem=1G</textarea>
+              </div>
+              <p class="text-justify">
+                In this line,<code>#PBS -l select=1:ncpus=24:mem=1G</code> 
+                we have the directive (called limit) for the number of cores and memory <code>-l</code>. Note that the same directive is used for walltime as well. 
+               This allows you to control the number of units of GPUs and also the number of GPUs per unit. When using ASPIRE 1 and the GPU queue, we can simply use the label cpu instead of gpu.
+               In this case, we have selected 1 unit <code>select=1:</code> of 24 CPUs <code>ncpus=24:</code>.
+               Finally, we can also specify the amount of memory (in GB) that we need for our task. Here, we have 1GB of memory <code>mem=1G</code> 
+              When using the website, you can specify the number of units of GPUs and the memory needed with the number fields below.
+            </p>
+            
+              <div class="col">
+                <label for="nodes">How many units of processors do you need?</label>
+                <input type="number" class = "form-control" id="nodes" name="nodes">
+              </div>
+            
+              <div class="col">
+                <label for="memory">How much memory (in GB) do you need?</label>
+                <input type="number" class = "form-control" id="memory" name="memory" placeholder="0GB">
+              </div>
+            
+              <!--Cores and memory directive end-->
+            
+            
+              <br>
+            
+            
+              <!--Walltime start-->
+            
+              <div class="form-group">
+                <div class="text-center">
+                  <label class="font-weight-bold code-boxes-title" for="gpuAITime">Walltime directive</label>
+                </div>
+               <textarea class="form-control my-code" id="gpuAITime" rows="1">#PBS -l walltime=00:10:00</textarea>
+              </div>
+              <p class="text-justify">
+                In this line,<code>#PBS -l walltime=00:10:00</code> 
+                we have the directive (called limit) for the total time that we would like to allocate for this task <code>-l</code>. Note that the same directive is used for the number of cores and memory as well. 
+               By setting a smaller required time, your task can be fast tracked to queues which are meant for short tasks. 
+               In this case, we have selected 0 hours, 10 minutes and 0 seconds unit <code>walltime=00:10:00</code>.
+              When using the website, you can specify the hours, minutes and seconds with the number fields below.
+            </p>
+            
+            <div class="row mt-4">
+              <div class="col">
+                <label for="hours">How many hours?</label>
+                <input type="number" class = "form-control" id="hours" name="hours" placeholder="0"> 
+              </div>
+              <div class="col">
+                <label for="minutes">How many minutes?</label>
+                <input type="number" class="form-control" id="minutes" name="minutes" placeholder="0">
+              </div>
+              <div class="col">
+                <label for="seconds">How many seconds?</label>
+                <input type="number"  class="form-control" id="seconds" name="seconds" placeholder="0">
+              </div>
+            </div>
+            
+              <!--Walltime end-->
+            
+            
+              <br>
+            
+            
+              <!--Project start-->
+            
+              <div class="form-group">
+                <div class="text-center">
+                  <label class="font-weight-bold code-boxes-title" for="gpuAITime">Project directive</label>
+                </div>
+               <textarea class="form-control my-code" id="gpuAICores" rows="1">#PBS -P Personal</textarea>
+              </div>
+              <p class="text-justify">
+                In this line,<code>#PBS -P Personal</code> 
+                we have the directive (called project) for the project which we would like to submit our job under <code>-P</code>. If you have a special project ID (assigned by NSCC), then you
+                can enter it in the text box below after selecting Yes. Else, we will autofill Personal, and the resources will be charged to your personal account.
+            </p>
+            
+            <div class="col" id="projectID">Do you have a special Project ID for your job?
+            
+              <div class="form-check">
+              <input class="form-check-input" type="radio" name="project" id="yesProject" value="yes">
+              <label class="form-check-label" for="yesProject">
+                Yes
+              </label>
+            </div>
+            
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="project" id="noProject" checked value="no">
+              <label class="form-check-label" for="noProject">
+                No
+              </label>
+            </div>
+            <div class="form-check" id="pid" >
+            <input class="form-check-input" type="text" name="projectID" id ="projectID" placeholder="project id">
+            </div>
+            </div>
+            
+              <!--Project end-->
+            
+            
+              <br>
+            
+            
+              <!--Name start-->
+              <div class="form-group">
+                <div class="text-center">
+                  <label class="font-weight-bold code-boxes-title" for="gpuAITime">Name directive</label>
+                </div>
+               <textarea class="form-control my-code" id="gpuAICores" rows="1">#PBS -N fashion_program</textarea>
+              </div>
+              <p class="text-justify">
+                In this line,<code>#PBS -N fashion_program</code> 
+                we have the directive (called name) for the name of our job <code>-N</code>. This name is up to you to choose. Note that your output and error files will be named after this as well.
+                In this website, you can fill in your desired name with the help of the text box below.
+            </p>
+            
+            <div class="col" id="outName">Do you have a special name for your output?
+            
+              <div class="form-check">
+              <input class="form-check-input" type="radio" name="outputName" id="yesOutputName" value="yes">
+              <label class="form-check-label" for="yesOutputName">
+                Yes
+              </label>
+            </div>
+            
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="outputName" id="noOutputName" checked value="no">
+              <label class="form-check-label" for="noOutputName">
+                No
+              </label>
+            </div>
+            <div class="form-check" id="oNI">
+            <input class="form-check-input" type="text" name="outputNameInput" id ="outputNameInput" placeholder="output name">
+            </div>
+            </div>
+              <!--Name end-->
+            
+            
+                  <br>
+                  <br>
+                  <br>
+            
+            
+                </div>
+            
+                <!--GPU entire end-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!--DGX entire start-->
+
+              <div class="tab-pane fade" id="gpu">
+                <h2 class="mt-2 text-center font-weight-bold">GPU</h2>
+                
+                <p class="text-justify">
+                  In the AI kick start guide, we provided an example for running a Deep Learning job 
+                  on the DGX machine of the NSCC. Below, we have provided the completed submission script.
+                </p>
+
+                <p>
+                  Note that the <code>#PBS </code> directive is simply a way of telling the interpreter that the line is to be interpreted as a command for the 
+                  PBS system (which the supercomputers in NSCC use to schedule jobs and allocate resources) instead of a comment. In the script generation algorithm, we will automatically add it
+                  for you, so you do not have to worry about it. 
+                </p>
+
+                <br>
+
+                <!--Whole DGX script start-->
+            <div class="form-group">
+              <div class="text-center">
+                <label class="font-weight-bold code-boxes-title" id="gpuAIScriptLabel" for="gpuAIScript">GPU Script for AI jobs</label>
+              </div>
+             <textarea class="form-control my-code" id="gpuAIScript" rows="12">
+#!/bin/bash
+# Exercise 2 submission script – submit.sh
+# Below, is the queue
+#PBS -q gpu
+#PBS -j oe
+#PBS -l select=1:ncpus=24:mem=1G
+#PBS -l walltime=00:10:00
+#PBS -P Personal
+#PBS -N fashion_program
+
+# Commands start here
+module load tensorflow/1.4
+cd ${PBS_O_WORKDIR}
+python fashion.py</textarea>
+            </div>
+
+            <p class="text-justify">
+              In this section, we shall be going through each line of the script and relating it back to how you can use this website to generate a similar script easily.
+            </p>
+            <!--Whole GPU script end-->
+            
+            <br>
+          
+            <!--Bash directive start-->
+          
+            <div class="form-group">
+              <div class="text-center">
+                <label class="font-weight-bold code-boxes-title" for="gpuAIBash">Bash directive</label>
+              </div>
+             <textarea class="form-control my-code" id="gpuAIBash" rows="2">#!/bin/bash
+          # Exercise 2 submission script – submit.sh</textarea>
+            </div>
+            <p class="text-justify">
+              The first line, <code>#!/bin/bash</code> is a directive telling the environment to use bash as a command interpreter. 
+              We will automatically include in the scripts generated on this website, so you do not have to worry about it. The second line,
+              <code># Exercise 2 submission script - submit.sh</code> is simply a comment, and can be added by you once the script is generated.
+            </p>
+          
+            <!--Bash directive end-->
+          
+            <br>
+          
+          
+            <!--Queue directive start-->
+          
+            <div class="form-group">
+              <div class="text-center">
+                <label class="font-weight-bold code-boxes-title" for="gpuAIQueue">Queue directive</label>
+              </div>
+             <textarea class="form-control my-code" id="gpuAIQueue" rows="2">
+          # Below, is the queue
+          #PBS -q gpu</textarea>
+            </div>
+            <p class="text-justify">
+              The first line, <code># Below, is the queue</code> is a just a comment again and can be added by you. In the second line,<code>#PBS -q gpu</code> 
+              we have the queue directive <code>-q</code>. <code>gpu</code> refers to the actual queue, the GPU (Graphics Processing Unit). When using the website, you can specify
+              the queue using the dropdown box below.
+            </p>
+          
+            <label for="queue">Which Queue do you want to submit your job to?</label>
+            <select id = "queue" class = "form-control" name = "queue">
+            <option disabled value = "NIL">--Please select an option--</option>
+            <option value = "normal">CPU</option>
+            <option selected value = "gpu">GPU</option>
+            <option value = "iworkq">Visualisation</option>
+            <option value = "imeq">IME</option>
+            <option value = "largemem">Large Memory</option>
+          </select>
+          
+          <p class="text-justify">
+          To find out more about the jobs, you can refer to the <a href="../index.html">main page</a> or the <a href="https://help.nscc.sg/pbspro-quickstartguide/#_Toc458432782">NSCC User guides</a>.
+          </p>
+          
+            <!--Queue directive end-->
+          
+            <br>
+          
+          
+            <!--Output directive start-->
+          
+            <div class="form-group">
+              <div class="text-center">
+                <label class="font-weight-bold code-boxes-title" for="gpuAIQueue">Output and Error directive</label>
+              </div>
+             <textarea class="form-control my-code" id="gpuAIQueue" rows="1">
+          #PBS -j oe</textarea>
+            </div>
+            <p class="text-justify">
+              In this line,<code>#PBS -j oe</code> 
+              we have the output and error directive <code>-j</code>. <code>oe</code> allows you to join the output and error files together. If you
+              would like to keep them separate, you can exclude this. When using the website, you can specify this using the checkbox below.
+            </p>
+          
+            <div class="col-4" id="output_choice">Do you want to join the output with the error messages?
+          
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="output" id="yesOutput" value="yes" checked>
+                <label class="form-check-label" for="yesOutput">
+                  Yes
+                </label>
+              </div>
+          
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="output" id="noOutput" value="no">
+                <label class="form-check-label" for="yesOutput">
+                  No
+                </label>
+              </div>
+            </div>
+          
+            <!--Output directive end-->
+            
+            <br>
+          
+          
+            <!--Cores and memory directive start-->
+          
+            <div class="form-group">
+              <div class="text-center">
+                <label class="font-weight-bold code-boxes-title" for="gpuAICores">Cores and Memory directive</label>
+              </div>
+             <textarea class="form-control my-code" id="gpuAICores" rows="1">
+          #PBS -l select=1:ncpus=24:mem=1G</textarea>
+            </div>
+            <p class="text-justify">
+              In this line,<code>#PBS -l select=1:ncpus=24:mem=1G</code> 
+              we have the directive (called limit) for the number of cores and memory <code>-l</code>. Note that the same directive is used for walltime as well. 
+             This allows you to control the number of units of GPUs and also the number of GPUs per unit. When using ASPIRE 1 and the GPU queue, we can simply use the label cpu instead of gpu.
+             In this case, we have selected 1 unit <code>select=1:</code> of 24 CPUs <code>ncpus=24:</code>.
+             Finally, we can also specify the amount of memory (in GB) that we need for our task. Here, we have 1GB of memory <code>mem=1G</code> 
+            When using the website, you can specify the number of units of GPUs and the memory needed with the number fields below.
+          </p>
+          
+            <div class="col">
+              <label for="nodes">How many units of processors do you need?</label>
+              <input type="number" class = "form-control" id="nodes" name="nodes">
+            </div>
+          
+            <div class="col">
+              <label for="memory">How much memory (in GB) do you need?</label>
+              <input type="number" class = "form-control" id="memory" name="memory" placeholder="0GB">
+            </div>
+          
+            <!--Cores and memory directive end-->
+          
+          
+            <br>
+          
+          
+            <!--Walltime start-->
+          
+            <div class="form-group">
+              <div class="text-center">
+                <label class="font-weight-bold code-boxes-title" for="gpuAITime">Walltime directive</label>
+              </div>
+             <textarea class="form-control my-code" id="gpuAITime" rows="1">#PBS -l walltime=00:10:00</textarea>
+            </div>
+            <p class="text-justify">
+              In this line,<code>#PBS -l walltime=00:10:00</code> 
+              we have the directive (called limit) for the total time that we would like to allocate for this task <code>-l</code>. Note that the same directive is used for the number of cores and memory as well. 
+             By setting a smaller required time, your task can be fast tracked to queues which are meant for short tasks. 
+             In this case, we have selected 0 hours, 10 minutes and 0 seconds unit <code>walltime=00:10:00</code>.
+            When using the website, you can specify the hours, minutes and seconds with the number fields below.
+          </p>
+          
+          <div class="row mt-4">
+            <div class="col">
+              <label for="hours">How many hours?</label>
+              <input type="number" class = "form-control" id="hours" name="hours" placeholder="0"> 
+            </div>
+            <div class="col">
+              <label for="minutes">How many minutes?</label>
+              <input type="number" class="form-control" id="minutes" name="minutes" placeholder="0">
+            </div>
+            <div class="col">
+              <label for="seconds">How many seconds?</label>
+              <input type="number"  class="form-control" id="seconds" name="seconds" placeholder="0">
+            </div>
+          </div>
+          
+            <!--Walltime end-->
+          
+          
+            <br>
+          
+          
+            <!--Project start-->
+          
+            <div class="form-group">
+              <div class="text-center">
+                <label class="font-weight-bold code-boxes-title" for="gpuAITime">Project directive</label>
+              </div>
+             <textarea class="form-control my-code" id="gpuAICores" rows="1">#PBS -P Personal</textarea>
+            </div>
+            <p class="text-justify">
+              In this line,<code>#PBS -P Personal</code> 
+              we have the directive (called project) for the project which we would like to submit our job under <code>-P</code>. If you have a special project ID (assigned by NSCC), then you
+              can enter it in the text box below after selecting Yes. Else, we will autofill Personal, and the resources will be charged to your personal account.
+          </p>
+          
+          <div class="col" id="projectID">Do you have a special Project ID for your job?
+          
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="project" id="yesProject" value="yes">
+            <label class="form-check-label" for="yesProject">
+              Yes
+            </label>
+          </div>
+          
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="project" id="noProject" checked value="no">
+            <label class="form-check-label" for="noProject">
+              No
+            </label>
+          </div>
+          <div class="form-check" id="pid" >
+          <input class="form-check-input" type="text" name="projectID" id ="projectID" placeholder="project id">
+          </div>
+          </div>
+          
+            <!--Project end-->
+          
+          
+            <br>
+          
+          
+            <!--Name start-->
+            <div class="form-group">
+              <div class="text-center">
+                <label class="font-weight-bold code-boxes-title" for="gpuAITime">Name directive</label>
+              </div>
+             <textarea class="form-control my-code" id="gpuAICores" rows="1">#PBS -N fashion_program</textarea>
+            </div>
+            <p class="text-justify">
+              In this line,<code>#PBS -N fashion_program</code> 
+              we have the directive (called name) for the name of our job <code>-N</code>. This name is up to you to choose. Note that your output and error files will be named after this as well.
+              In this website, you can fill in your desired name with the help of the text box below.
+          </p>
+          
+          <div class="col" id="outName">Do you have a special name for your output?
+          
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="outputName" id="yesOutputName" value="yes">
+            <label class="form-check-label" for="yesOutputName">
+              Yes
+            </label>
+          </div>
+          
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="outputName" id="noOutputName" checked value="no">
+            <label class="form-check-label" for="noOutputName">
+              No
+            </label>
+          </div>
+          <div class="form-check" id="oNI">
+          <input class="form-check-input" type="text" name="outputNameInput" id ="outputNameInput" placeholder="output name">
+          </div>
+          </div>
+            <!--Name end-->
+          
+          
+                <br>
+                <br>
+                <br>
+          
+          
+              </div>
+          
+              <!--DGX entire end-->
+
+
+
+            </div>  
+            </div>
+
+<!--Ai end-->
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <!--MPI Start-->
 
             <div style="display:none" id="mpi" class="panel panel-default">
-              <h1 class="mt-4" style="color:black">MPI</h1>
 
 
             </div>

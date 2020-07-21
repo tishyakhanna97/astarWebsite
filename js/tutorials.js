@@ -4,26 +4,22 @@ function toggleAI() {
     var x = document.getElementById("ai");
     var y = document.getElementById("mpi");
 
+    y.style.display = "none";
+    x.style.display = "block";
+    document.getElementById("aiButton").className = "btn btn-success btn-lg btn-block";
+    document.getElementById("mpiButton").className = "btn btn-danger btn-lg btn-block";
 
-    if (x.style.display === "none") {
-        y.style.display = "none";
-        x.style.display = "block";
-    } else {
-        x.style.display="none";
-        y.style.display = "block";
-
-    }
 }
 
 function toggleMPI() {
     var x = document.getElementById("mpi");
     var y = document.getElementById("ai");
 
-    if (x.style.display === "none") {
-        y.style.display = "none";
-        x.style.display = "block";
-    } else {
-        x.style.display="none";
-        y.style.display = "block";
-    }
+    y.style.display = "none";
+    x.style.display = "block";
+    document.getElementById("mpiButton").className = "btn btn-success btn-lg btn-block";
+    document.getElementById("aiButton").className = "btn btn-danger btn-lg btn-block";
+
+
+
 }
