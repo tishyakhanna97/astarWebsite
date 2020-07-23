@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+        <title>Templates</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<!-- Responsive meta tag-->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Tishya Khanna">
+
+
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel = "stylesheet" href = "../css/stylesheet.css">
+
+<!--Javascript-->
+<script type="text/javascript" src = "../js/templates.js"></script>
+
+</head>
+
+<body>
+    <div class = "container-fluid bg-light">
+      <!-- Nav bar start-->
+      <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+          <a class="navbar-brand" href="https://www.nscc.sg/">
+              <img src="../assets/astar.png" width="100" height="50" class="d-inline-block align-top" alt="" loading="lazy">                
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">
+                  <span class="sr-only">
+                    Home
+                  </span></a>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Pages
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="../index.html">Home</a>
+                  <a class="dropdown-item" href="./diy.html">DIY</a>
+                </div>
+              </li>
+              
+            </ul>
+          </div>
+        </nav>
+      <!-- Nav bar end-->
+      
+      <!--Information start-->
+        <div class="jumbotron jumbotron-fluid p-2">
+          <div class="container">
+            <h1 class="display-8">Template Scripts</h1>
+            <div class="text-center">
+              On this page, you can easily generate template scripts with a few clicks.
+            </div>
+          </div>
+        </div>
+      <!-- Information end-->
+
+      <!--First row to decide queue-->
+      <div class="row spacer">
+
+          <div class="col-4">
+            <button type="button" id="aiButton" onclick="loadAIOptions()" class="btn btn-info btn-block">Artificial Intelligence</button>
+            <script src="https://unpkg.com/@popperjs/core@2"></script>
+            <script src="https://unpkg.com/tippy.js@6"></script>
+                <script>
+                    // With the above scripts loaded, you can call `tippy()` with a CSS
+                    // selector and a `content` prop:
+                    tippy('#aiButton', {
+                    content: 'Will be submitted to GPU queue, which is best suited for AI, ML and Deep Learning!',
+                    });
+                    </script>
+            </div>
+
+        <div class="col-4">
+            <button type="button" id="generalButton" onclick="loadGeneralOptions()" class="btn btn-info btn-block">General</button>
+            <script src="https://unpkg.com/@popperjs/core@2"></script>
+            <script src="https://unpkg.com/tippy.js@6"></script>
+                <script>
+                    // With the above scripts loaded, you can call `tippy()` with a CSS
+                    // selector and a `content` prop:
+                    tippy('#generalButton', {
+                    content: 'Will be submitted to CPU queue, which is best suited for most jobs like MPI, Gromacs, python!',
+                    });
+                    </script>
+        </div>
+
+        <div class="col-4">
+            <button type="button" id="largeButton" onclick="loadGeneralOptionsLM()" class="btn btn-info btn-block">Large Memory</button>
+            <script src="https://unpkg.com/@popperjs/core@2"></script>
+            <script src="https://unpkg.com/tippy.js@6"></script>
+                <script>
+                    // With the above scripts loaded, you can call `tippy()` with a CSS
+                    // selector and a `content` prop:
+                    tippy('#largeButton', {
+                    content: 'Will be submitted to Large Memory queue, best for jobs which require over 1TB of memory!',
+                    });
+                    </script>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="spacer section" id="aiOptions"> 
+
+
+      <div class="col">
+        <label for="progNameAI">What is the name of your program (include the extension)?</label>
+        <input type="text" class = "form-control" id="progNameAI" name="progNameAI" value="hello_world.py">
+      </div>
+
+      <div class="row mt-4" >
+
+              <div class="col">
+                <button type="button" value="tensorflow/1.4" onclick="genAIScript(this.value)" class="btn btn-info btn-block">TensorFlow</button>
+            </div>
+            <div class="col">
+                <button type="button" value="caffe" onclick="genAIScript(this.value)" class="btn btn-info btn-block">Caffe</button>
+            </div>
+            <div class="col">
+                <button type="button" value="opencv/2.4.3" onclick="genAIScript(this.value)" class="btn btn-info btn-block">OpenCv</button>
+            </div>
+
+      </div>
+      <div class="row mt-4">
+
+
+
+
+</div>
+
+
+<div class="row mt-4">
+  <button type="button" onclick="printScript()" class="btn btn-success btn-block">Generate Script</button>
+</div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="spacer section" id="generalOptions"> 
+
+      
+
+      <div class="row mt-4">
+
+      <div class="col">
+        <label for="progNameGen">What is the name of your program (include the extension)?</label>
+        <input type="text" class = "form-control" id="progNameGen" name="progNameGen" value="helloWorld.java">
+      </div>
+      </div>
+
+
+      <div class="row" >
+
+              <div class="col">
+                <button type="button" value="java" onclick="genGenScript(this.value)" class="btn btn-info btn-block">Java</button>
+
+            </div>
+
+            <div class="col">
+                <button type="button" value="python" onclick="genGenScript(this.value)" class="btn btn-info btn-block">Python</button>
+            </div>
+
+      </div>
+
+
+<div class="row mt-4">
+  <button type="button" onclick="printScript()"  class="btn btn-success btn-block">Generate Script</button>
+</div>
+    </div>
+  </div>
+
+
+
+    <div id="thisThing" class="form-group section">
+      <label for="outputScript">Your Script</label>
+      <textarea class="form-control rounded-0" id="outputScript" rows="10" placeholder="Fill up the form first!"></textarea>
+    </div>  
+
+      
+      
+      
+
+
+
+
+
+
+
+      <!-- Development -->
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+              
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+     </div>
+     </body>
+</html>

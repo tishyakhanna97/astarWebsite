@@ -1,5 +1,4 @@
 h1 {
-    color: red;
     text-align: center;
 }
 
@@ -32,4 +31,14 @@ h1, h2, h3, h4, h5, h6 {
 .code-boxes-title {
     font-size: large;
     font-weight: 200;
+}
+
+.spacer {
+    margin-bottom: 50%;
+}
+
+.section {
+    color: black;
+    display: none;
+
 }
