@@ -12,6 +12,7 @@ function validateInput() {
     var output = document.input.output.value;
     var pidCheck = document.input.project.value;
     var outputNameCheck = document.input.outputName.value;
+    var module = document.input.module.value;
     if (queue == "") {
         console.log("Missing Queue Information");
         return false;
@@ -47,7 +48,8 @@ function validateInput() {
                          directory:directory,
                          output:output,
                          outputName:outputName,
-                         pid:pid};
+                         pid:pid,
+                         module:module};
         return variables;
     }
 }
@@ -92,7 +94,12 @@ function writeScript(input) {
 
     var projectID = pbsDirective.concat("P ", input.pid,newLine,newLine);
 
-    return bashDirective.concat(queue,cores,wallTime,nameOfProject,output,outputName,projectID,directory);
+    var modules = "";
+    if(input.module != "no") {
+        modules.concat("module load ",input.module,newLine);
+    }
+
+    return bashDirective.concat(queue,cores,wallTime,nameOfProject,output,outputName,projectID,directory,modules,);
 }
 
 function getScript() {
@@ -145,6 +152,9 @@ function testScript() {
         pid:""};
     var script = writeScript(variables);
     document.getElementById("outputScript").innerHTML= script;
+}
 
+function clearForm() {
+    document.getElementById("outputScript").innerHTML= "";
 
 }

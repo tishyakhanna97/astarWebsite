@@ -24,36 +24,38 @@
       <div class = "container-fluid bg-light">
         <!-- Nav bar start-->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-            <a class="navbar-brand" href="https://www.nscc.sg/">
-                <img src="../assets/astar.png" width="100" height="50" class="d-inline-block align-top" alt="" loading="lazy">                
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">
-                    <span class="sr-only">
-                      Home
-                    </span></a>
-                </li>
+          <a class="navbar-brand" href="https://www.nscc.sg/">
+              <img src="../assets/astar.png" width="100" height="50" class="d-inline-block align-top" alt="" loading="lazy">                
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">
+                  <span class="sr-only">
+                    Home
+                  </span></a>
+              </li>
 
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Pages
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="../index.html">Home</a>
-                    <a class="dropdown-item" href="./diy.html">DIY</a>
-                  </div>
-                </li>
-                
-              </ul>
-            </div>
-          </nav>
-        <!-- Nav bar end-->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Pages
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="../index.html">Home</a>
+                  <a class="dropdown-item" href="./tutorials.html">Tutorials</a>
+                  <a class="dropdown-item" href="./templates.html">Templates</a>
+                  <a class="dropdown-item" href="./diy.html">DIY</a>
+                </div>
+              </li>
+              
+            </ul>
+          </div>
+        </nav>
+      <!-- Nav bar end-->
 
         <!--Information start-->
         <div class="jumbotron jumbotron-fluid p-2">
@@ -205,12 +207,45 @@
                           </label>
                         </div>
                       </div>
+
+                      <div class="col-4" id="module_choice">Do you want to load any modules?
+          
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="module" id="noModule" value="no">
+                          <label class="form-check-label" for="yesOutput">
+                            No
+                          </label>
+                        </div>
+
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="module" id="tensorflowModule" value="tensorflow/1.4">
+                          <label class="form-check-label" for="tensorflowModule">
+                            TensorFlow
+                          </label>
+                        </div>
+
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="module" id="caffeModule" value="caffe">
+                          <label class="form-check-label" for="caffeModule">
+                            Caffe
+                          </label>
+                        </div>
+
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="module" id="opencvModule" value="opencv/2.4.3">
+                          <label class="form-check-label" for="opencvModule">
+                            OpenCV
+                          </label>
+                        </div>
+
+
+                      </div>
                     </div>
                     <!--Extra  end-->
 
           <div class="text-center mt-4">
           <input class="text-center" type="submit" onclick="getScript()">
-          <input class="text-center" type="reset" value="Reset">
+          <input class="text-center" onclick="clearForm()" type="reset" value="Reset">
           <button type="button" class="btn btn-danger" onclick="testScript()">Test Input</button>        
         </div>
         </div>
