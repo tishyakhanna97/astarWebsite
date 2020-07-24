@@ -99,7 +99,7 @@ function writeScript(input) {
         modules.concat("module load ",input.module,newLine);
     }
 
-    return bashDirective.concat(queue,cores,wallTime,nameOfProject,output,outputName,projectID,directory,modules,);
+    return bashDirective.concat(queue,cores,wallTime,nameOfProject,output,outputName,projectID,directory,modules);
 }
 
 function getScript() {
@@ -139,6 +139,7 @@ function testScript() {
     document.input.output.value = "yes";
     document.input.projectID.value = "";
     document.input.outputNameInput.value = "output.txt";
+    document.input.module.value = "tensorflow/1.4";
     var variables = {queue:"normal", 
         numberOfNodes:"1",
         memory:"1", 
@@ -149,7 +150,8 @@ function testScript() {
         directory:"yes",
         output:"yes",
         outputName:"output.txt",
-        pid:""};
+        pid:"",
+        module:"tensorflow/1.4"};
     var script = writeScript(variables);
     document.getElementById("outputScript").innerHTML= script;
 }
