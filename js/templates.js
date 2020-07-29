@@ -61,7 +61,7 @@ function genGenScript(typeOfProgram) {
 
     var q = "normal";
     if(largeMem) {
-        q = "largeMem";
+        q = "largemem";
     }
     var variables = {queue:q, 
         numberOfNodes:"1",
