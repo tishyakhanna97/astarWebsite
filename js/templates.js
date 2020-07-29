@@ -1,7 +1,18 @@
 'use strict'
 var finalScript = "";
 var largeMem = false;
-var mybutton = document.getElementById("myBtn");
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    var copyButton = document.querySelector("#clipBoardButton");
+
+    if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+        copyButton.style.display = "block";
+    } else {
+        copyButton.style.display = "none";
+    }
+}
 
 
 // When the user clicks on the button, scroll to the top of the document
@@ -174,4 +185,12 @@ function printScript() {
     outputContainer.scrollIntoView({behavior: 'smooth'});
     console.log("script loaded");
     largeMem = false;
+}
+
+function clipBoardFunction() {
+    var copiedText = document.getElementById("outputScript");
+    copiedText.select();
+    document.execCommand("copy");
+    alert("Copied the script!");
+
 }
