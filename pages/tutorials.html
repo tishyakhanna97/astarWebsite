@@ -160,8 +160,8 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
                     <label class="font-weight-bold code-boxes-title" for="cpuAIBash">Bash directive</label>
                   </div>
                  <textarea class="form-control my-code" id="cpuAIBash" rows="2">
-  #!/bin/bash
-  # Exercise 1 submission script - submit.sh</textarea>
+#!/bin/bash
+# Exercise 1 submission script - submit.sh</textarea>
                 </div>
                 <p class="text-justify">
                   The first line, <code>#!/bin/bash</code> is a directive telling the environment to use bash as a command interpreter. 
@@ -195,9 +195,8 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
                 <option disabled value = "NIL">--Please select an option--</option>
                 <option selected value = "normal">CPU</option>
                 <option value = "gpu">GPU</option>
-                <option value = "iworkq">Visualisation</option>
-                <option value = "imeq">IME</option>
                 <option value = "largemem">Large Memory</option>
+                <option value = "dgx">DGX</option>
             </select>
 
             <p class="text-justify">
@@ -529,10 +528,9 @@ python fashion.py</textarea>
               <option disabled value = "NIL">--Please select an option--</option>
               <option value = "normal">CPU</option>
               <option selected value = "gpu">GPU</option>
-              <option value = "iworkq">Visualisation</option>
-              <option value = "imeq">IME</option>
               <option value = "largemem">Large Memory</option>
-            </select>
+              <option value = "dgx">DGX</option>
+          </select>
             
             <p class="text-justify">
             To find out more about the jobs, you can refer to the <a href="../index.html">main page</a> or the <a href="https://help.nscc.sg/pbspro-quickstartguide/#_Toc458432782">NSCC User guides</a>.
@@ -858,12 +856,11 @@ we have the queue directive <code>-q</code>. <code>dgx</code> refers to the actu
 
 <label for="queue">Which Queue do you want to submit your job to?</label>
 <select id = "queue" class = "form-control" name = "queue">
-<option selected disabled value = "NIL">--Please select an option--</option>
-<option value = "normal">CPU</option>
+<option disabled value = "NIL">--Please select an option--</option>
+<option selected value = "normal">CPU</option>
 <option value = "gpu">GPU</option>
-<option value = "iworkq">Visualisation</option>
-<option value = "imeq">IME</option>
 <option value = "largemem">Large Memory</option>
+<option selected value = "dgx">DGX</option>
 </select>
 
 <p class="text-justify">
