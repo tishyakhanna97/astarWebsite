@@ -1,5 +1,24 @@
 'use strict'
 
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    var copyButton = document.querySelector("#clipBoardButton");
+
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        copyButton.style.display = "block";
+    } else {
+        copyButton.style.display = "none";
+    }
+}
+
+function clipBoardFunction() {
+    var copiedText = document.getElementById("outputScript");
+    copiedText.select();
+    document.execCommand("copy");
+
+}
+
 function validateInput() {
     var queue = document.input.queue.value;
     var nodesNumber = document.input.nodes.value;
