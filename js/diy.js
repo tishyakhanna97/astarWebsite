@@ -115,7 +115,7 @@ function writeScript(input) {
 
     var modules = "";
     if(input.module != "no") {
-        modules.concat("module load ",input.module,newLine);
+        modules = "module load ".concat(input.module,newLine);
     }
 
     return bashDirective.concat(queue,cores,wallTime,nameOfProject,output,outputName,projectID,directory,modules);
