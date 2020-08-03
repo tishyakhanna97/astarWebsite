@@ -63,7 +63,7 @@
             <div class="container">
               <h1 class="display-8">Tutorials</h1>
               <div class="text-center">
-                On this page, we shall guide you through the submission scripts we used in the ASPIRE 1 amd AI start up guides.
+                On this page, we shall guide you through the submission scripts we used in the ASPIRE 1 and AI Quick Start Guides.
               </div>
             </div>
           </div>
@@ -111,12 +111,12 @@
                     <h2 class="mt-2 text-center font-weight-bold">CPU</h2>
                     
                     <p class="text-justify">
-                      In the AI kick start guide, we provided an example for running a Deep Learning job 
+                      In the AI Quick Start Guide, we provided an example for running a Deep Learning job 
                       on the compute nodes(CPU) of the NSCC ASPIRE 1 system. Below, we have provided the completed submission script.
                     </p>
 
                     <p>
-                      Note that the <code>#PBS </code> directive is simply a way of telling the interpreter that the line is to be interpreted as a command for the 
+                      Note that the <code>#PBS </code> directive prepended to the first few lines is simply a way of telling the interpreter that the line is to be interpreted as a command for the 
                       PBS system (which the supercomputers in NSCC use to schedule jobs and allocate resources) instead of a comment. In the script generation algorithm, we will automatically add it
                       for you, so you do not have to worry about it. 
                     </p>
@@ -147,7 +147,7 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
                 </div>
 
                 <p class="text-justify">
-                  In this section, we shall be going through each line of the script and relating it back to how you can use this website to generate a similar script easily.
+                  In this section, we shall be going through each line of the above script and relating it back to how you can use this website to generate a similar script easily.
                 </p>
                 <!--Whole CPU script end-->
                 
@@ -165,7 +165,7 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
                 </div>
                 <p class="text-justify">
                   The first line, <code>#!/bin/bash</code> is a directive telling the environment to use bash as a command interpreter. 
-                  We will automatically include in the scripts generated on this website, so you do not have to worry about it. The second line,
+                  We will automatically include this line in the scripts generated on this website, so you do not have to worry about it. The second line,
                   <code># Exercise 1 submission script - submit.sh</code> is simply a comment, and can be added by you once the script is generated.
                 </p>
 
@@ -185,7 +185,7 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
 #PBS -q normal</textarea>
                 </div>
                 <p class="text-justify">
-                  The first line, <code># Below, is the queue</code> is a just a comment again and can be added by you. In the second line,<code>#PBS -q normal</code> 
+                  The first line, <code># Below, is the queue</code> is a just a comment and can be added by you. In the second line,<code>#PBS -q normal</code>,
                   we have the queue directive <code>-q</code>. <code>normal</code> refers to the actual queue, the CPU (compute nodes). When using the website, you can specify
                   the queue using the dropdown box below.
                 </p>
@@ -218,7 +218,7 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
 #PBS -j oe</textarea>
                 </div>
                 <p class="text-justify">
-                  In this line,<code>#PBS -j oe</code> 
+                  In this line,<code>#PBS -j oe</code>,
                   we have the output and error directive <code>-j</code>. <code>oe</code> allows you to join the output and error files together. If you
                   would like to keep them separate, you can exclude this. When using the website, you can specify this using the checkbox below.
                 </p>
@@ -255,12 +255,12 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
 #PBS -l select=1:ncpus=24:mem=1G</textarea>
                 </div>
                 <p class="text-justify">
-                  In this line,<code>#PBS -l select=1:ncpus=24:mem=1G</code> 
+                  In this line,<code>#PBS -l select=1:ncpus=24:mem=1G</code>, 
                   we have the directive (called limit) for the number of cores and memory <code>-l</code>. Note that the same directive is used for walltime as well. 
-                 This allows you to control the number of units of CPUs and also the number of CPUs. 
+                 This allows you to control the number of units of CPUs (We will fix the number of CPUs per unit at 24).
                  In this case, we have selected 1 unit <code>select=1:</code> of 24 CPUs <code>ncpus=24:</code>.
                  Finally, we can also specify the amount of memory (in GB) that we need for our task. Here, we have 1GB of memory <code>mem=1G</code> 
-                When using the website, you can specify the number of units of CPUs, number of CPUs per unit and the memory needed with the number fields below.
+                When using the website, you can specify the number of units of CPUs, and the memory needed with the input fields below.
               </p>
 
                 <div class="col">
@@ -299,7 +299,7 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
                 <div class="col">
                   <label for="hours">How many hours?</label>
                   <input type="number" class = "form-control" id="hours" name="hours" placeholder="0"> 
-                </div>
+ 4               </div>
                 <div class="col">
                   <label for="minutes">How many minutes?</label>
                   <input type="number" class="form-control" id="minutes" name="minutes" placeholder="0">
@@ -446,12 +446,12 @@ singularity exec /app/singularity/images/nscc/shchung/inc5654.img python linear.
                   <h2 class="mt-2 text-center font-weight-bold">GPU</h2>
                   
                   <p class="text-justify">
-                    In the AI kick start guide, we provided an example for running a Deep Learning job 
+                    In the AI Quick Start Guide, we provided an example for running a Deep Learning job 
                     on the Graphics Processing Unit (GPU) of the NSCC ASPIRE 1 system. Below, we have provided the completed submission script.
                   </p>
 
                   <p>
-                    Note that the <code>#PBS </code> directive is simply a way of telling the interpreter that the line is to be interpreted as a command for the 
+                    Note that the <code>#PBS </code> directive prepended to the first few lines is simply a way of telling the interpreter that the line is to be interpreted as a command for the 
                     PBS system (which the supercomputers in NSCC use to schedule jobs and allocate resources) instead of a comment. In the script generation algorithm, we will automatically add it
                     for you, so you do not have to worry about it. 
                   </p>
@@ -498,7 +498,7 @@ python fashion.py</textarea>
               </div>
               <p class="text-justify">
                 The first line, <code>#!/bin/bash</code> is a directive telling the environment to use bash as a command interpreter. 
-                We will automatically include in the scripts generated on this website, so you do not have to worry about it. The second line,
+                We will automatically include this line in the scripts generated on this website, so you do not have to worry about it. The second line,
                 <code># Exercise 2 submission script - submit.sh</code> is simply a comment, and can be added by you once the script is generated.
               </p>
             
@@ -771,12 +771,12 @@ python fashion.py</textarea>
   <h2 class="mt-2 text-center font-weight-bold">DGX</h2>
   
   <p class="text-justify">
-    In the AI kick start guide, we provided an example for running a Deep Learning job 
+    In the AI Quick Start Guide, we provided an example for running a Deep Learning job 
     on the DGX machine of the NSCC. Below, we have provided the completed submission script.
   </p>
 
   <p>
-    Note that the <code>#PBS </code> directive is simply a way of telling the interpreter that the line is to be interpreted as a command for the 
+    Note that the <code>#PBS </code> directive prepended to the first few lines is simply a way of telling the interpreter that the line is to be interpreted as a command for the 
     PBS system (which the supercomputers in NSCC use to schedule jobs and allocate resources) instead of a comment. In the script generation algorithm, we will automatically add it
     for you, so you do not have to worry about it. 
   </p>
@@ -828,8 +828,8 @@ In this section, we shall be going through each line of the script and relating 
 # Exercise 2 submission script – submit.sh</textarea>
 </div>
 <p class="text-justify">
-The first line, <code>#!/bin/bash</code> is a directive telling the environment to use bash as a command interpreter. 
-We will automatically include in the scripts generated on this website, so you do not have to worry about it. The second line,
+  The first line, <code>#!/bin/bash</code> is a directive telling the environment to use bash as a command interpreter. 
+  We will automatically include this line in the scripts generated on this website, so you do not have to worry about it. The second line,
 <code># Exercise 3 submission script - submit.sh</code> is simply a comment, and can be added by you once the script is generated.
 </p>
 
@@ -1102,10 +1102,284 @@ No
 
 
 
+
+
             <!--MPI Start-->
 
             <div style="display:none" id="mpi" class="panel panel-default">
-              <h1 class="mt-4">Coming soon!</h1>
+              <div  id="mpiNav" class="panel panel-default">
+
+                <ul class="nav nav-tabs mt-4">
+                  <li class="nav-item">
+                      <a href="#batch" class="nav-link active" data-toggle="tab">Batch</a>
+                  </li>
+              </ul>
+  
+              <!--tabs AI end-->
+  
+              <!--Batch Script entire start-->
+              <div class="tab-content">
+                  <div class="tab-pane fade show active" id="batch">
+                      <h2 class="mt-2 text-center font-weight-bold">Batch Script</h2>
+                      
+                      <p class="text-justify">
+                        In the ASPIRE 1 Quick Start Guide, we provided an example for running a Batch Job for MPI. 
+                        Below, we have provided the completed submission script.
+                      </p>
+  
+                      <p>
+                        Note that the <code>#PBS </code> directive prepended to the first few lines is simply a way of telling the interpreter that the line is to be interpreted as a command for the 
+                        PBS system (which the supercomputers in NSCC use to schedule jobs and allocate resources) instead of a comment. In the script generation algorithm, we will automatically add it
+                        for you, so you do not have to worry about it. 
+                      </p>
+  
+                      <br>
+  
+                      <!--Whole Batch MPI script start-->
+                  <div class="form-group">
+                    <div class="text-center">
+                      <label class="font-weight-bold code-boxes-title" id="mpiBatchScriptLabel" for="mpiBatchScript">MPI Submission Script for Batch jobs</label>
+  
+                    </div>
+                   <textarea class="form-control my-code" id="mpiBatchScript" rows="12">
+#!/bin/bash 
+# Exercise 3 – batch_hello_world.pbs 
+#PBS -q normal
+#PBS -j oe 
+#PBS -l select=1:ncpus=24:mem=1G
+#PBS -l walltime=00:10:00
+#PBS -P Personal 
+
+
+module load openmpi 
+cd $PBS_O_WORKDIR
+mpicc -o mpi_hello_world ./mpi_hello_world.c 
+mpirun -np10 ./mpi_hello_world > output</textarea>
+                  </div>
+  
+                  <p class="text-justify">
+                    In this section, we shall be going through each line of the above script and relating it back to how you can use this website to generate a similar script easily.
+                  </p>
+                  <!--Whole CPU script end-->
+                  
+                  <br>
+  
+                  <!--Bash directive start-->
+  
+                  <div class="form-group">
+                    <div class="text-center">
+                      <label class="font-weight-bold code-boxes-title" for="cpuAIBash">Bash directive</label>
+                    </div>
+                   <textarea class="form-control my-code" id="cpuAIBash" rows="2">
+  #!/bin/bash
+  # Exercise 3 – batch_hello_world.pbs </textarea>
+                  </div>
+                  <p class="text-justify">
+                    The first line, <code>#!/bin/bash</code> is a directive telling the environment to use bash as a command interpreter. 
+                    We will automatically include this line in the scripts generated on this website, so you do not have to worry about it. The second line,
+                    <code># Exercise 3 – batch_hello_world.pbs</code> is simply a comment, and can be added by you once the script is generated.
+                  </p>
+  
+                  <!--Bash directive end-->
+  
+                  <br>
+  
+  
+                  <!--Queue directive start-->
+  
+                  <div class="form-group">
+                    <div class="text-center">
+                      <label class="font-weight-bold code-boxes-title" for="cpuAIQueue">Queue directive</label>
+                    </div>
+                   <textarea class="form-control my-code" id="cpuAIQueue" rows="2">
+  #PBS -q normal</textarea>
+                  </div>
+                  <p class="text-justify">
+                    In the first line,<code>#PBS -q normal</code>,
+                    we have the queue directive <code>-q</code>. <code>normal</code> refers to the actual queue, the CPU (compute nodes). When using the website, you can specify
+                    the queue using the dropdown box below.
+                  </p>
+  
+                  <label for="queue">Which Queue do you want to submit your job to?</label>
+                  <select id = "queue" class = "form-control" name = "queue">
+                  <option disabled value = "NIL">--Please select an option--</option>
+                  <option selected value = "normal">CPU</option>
+                  <option value = "gpu">GPU</option>
+                  <option value = "largemem">Large Memory</option>
+                  <option value = "dgx">DGX</option>
+              </select>
+  
+              <p class="text-justify">
+                To find out more about the jobs, you can refer to the <a href="../index.html">main page</a> or the <a href="https://help.nscc.sg/pbspro-quickstartguide/#_Toc458432782">NSCC User guides</a>.
+              </p>
+  
+                  <!--Queue directive end-->
+  
+                  <br>
+  
+  
+                  <!--Output directive start-->
+  
+                  <div class="form-group">
+                    <div class="text-center">
+                      <label class="font-weight-bold code-boxes-title" for="cpuAIQueue">Output and Error directive</label>
+                    </div>
+                   <textarea class="form-control my-code" id="cpuAIQueue" rows="1">
+  #PBS -j oe</textarea>
+                  </div>
+                  <p class="text-justify">
+                    In this line,<code>#PBS -j oe</code>,
+                    we have the output and error directive <code>-j</code>. <code>oe</code> allows you to join the output and error files together. If you
+                    would like to keep them separate, you can exclude this. When using the website, you can specify this using the checkbox below.
+                  </p>
+  
+                  <div class="col-4" id="output_choice">Do you want to join the output with the error messages?
+            
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="output" id="yesOutput" value="yes" checked>
+                      <label class="form-check-label" for="yesOutput">
+                        Yes
+                      </label>
+                    </div>
+      
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="output" id="noOutput" value="no">
+                      <label class="form-check-label" for="yesOutput">
+                        No
+                      </label>
+                    </div>
+                  </div>
+  
+                  <!--Output directive end-->
+                  
+                  <br>
+  
+  
+                  <!--Cores and memory directive start-->
+  
+                  <div class="form-group">
+                    <div class="text-center">
+                      <label class="font-weight-bold code-boxes-title" for="cpuAICores">Cores and Memory directive</label>
+                    </div>
+                   <textarea class="form-control my-code" id="cpuAICores" rows="1">
+  #PBS -l select=1:ncpus=24:mem=1G</textarea>
+                  </div>
+                  <p class="text-justify">
+                    In this line,<code>#PBS -l select=1:ncpus=24:mem=1G</code>, 
+                    we have the directive (called limit) for the number of cores and memory <code>-l</code>. Note that the same directive is used for walltime as well. 
+                   This allows you to control the number of units of CPUs (We will fix the number of CPUs per unit at 24).
+                   In this case, we have selected 1 unit <code>select=1:</code> of 24 CPUs <code>ncpus=24:</code>.
+                   Finally, we can also specify the amount of memory (in GB) that we need for our task. Here, we have 1GB of memory <code>mem=1G</code> 
+                  When using the website, you can specify the number of units of CPUs, and the memory needed with the input fields below.
+                </p>
+  
+                  <div class="col">
+                    <label for="nodes">How many units of processors do you need?</label>
+                    <input type="number" class = "form-control" id="nodes" name="nodes">
+                  </div>
+    
+                  <div class="col">
+                    <label for="memory">How much memory (in GB) do you need?</label>
+                    <input type="number" class = "form-control" id="memory" name="memory" placeholder="0GB">
+                  </div>
+  
+                  <!--Cores and memory directive end-->
+  
+  
+                  <br>
+  
+  
+                  <!--Walltime start-->
+  
+                  <div class="form-group">
+                    <div class="text-center">
+                      <label class="font-weight-bold code-boxes-title" for="cpuAITime">Walltime directive</label>
+                    </div>
+                   <textarea class="form-control my-code" id="cpuAICores" rows="1">#PBS -l walltime=00:10:00</textarea>
+                  </div>
+                  <p class="text-justify">
+                    In this line,<code>#PBS -l walltime=00:10:00</code> 
+                    we have the directive (called limit) for the total time that we would like to allocate for this task <code>-l</code>. Note that the same directive is used for the number of cores and memory as well. 
+                   By setting a smaller required time, your task can be fast tracked to queues which are meant for short tasks. 
+                   In this case, we have selected 0 hours, 10 minutes and 0 seconds unit <code>walltime=00:10:00</code>.
+                  When using the website, you can specify the hours, minutes and seconds with the mumber fields below.
+                </p>
+  
+                <div class="row mt-4">
+                  <div class="col">
+                    <label for="hours">How many hours?</label>
+                    <input type="number" class = "form-control" id="hours" name="hours" placeholder="0"> 
+   4               </div>
+                  <div class="col">
+                    <label for="minutes">How many minutes?</label>
+                    <input type="number" class="form-control" id="minutes" name="minutes" placeholder="0">
+                  </div>
+                  <div class="col">
+                    <label for="seconds">How many seconds?</label>
+                    <input type="number"  class="form-control" id="seconds" name="seconds" placeholder="0">
+                  </div>
+                </div>
+  
+                  <!--Walltime end-->
+  
+  
+                  <br>
+  
+  
+                  <!--Project start-->
+  
+                  <div class="form-group">
+                    <div class="text-center">
+                      <label class="font-weight-bold code-boxes-title" for="cpuAITime">Project directive</label>
+                    </div>
+                   <textarea class="form-control my-code" id="cpuAICores" rows="1">#PBS -P Personal</textarea>
+                  </div>
+                  <p class="text-justify">
+                    In this line,<code>#PBS -P Personal</code> 
+                    we have the directive (called project) for the project which we would like to submit our job under <code>-P</code>. If you have a special project ID (assigned by NSCC), then you
+                    can enter it in the text box below after selecting Yes. Else, we will autofill Personal, and the resources will be charged to your personal account.
+                </p>
+  
+                <div class="col" id="projectID">Do you have a special Project ID for your job?
+              
+                  <div class="form-check">
+                  <input class="form-check-input" type="radio" name="project" id="yesProject" value="yes">
+                  <label class="form-check-label" for="yesProject">
+                    Yes
+                  </label>
+                </div>
+                
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="project" id="noProject" checked value="no">
+                  <label class="form-check-label" for="noProject">
+                    No
+                  </label>
+                </div>
+                <div class="form-check" id="pid" >
+                <input class="form-check-input" type="text" name="projectID" id ="projectID" placeholder="project id">
+              </div>
+              </div>
+  
+                  <!--Project end-->
+  
+  
+                  <br>
+  
+  
+
+  
+  
+  
+  
+  
+                <!--Batch Script entire end-->
+  
+  
+    
+  
+              </div>  
+              </div>
+  
 
 
             </div>
